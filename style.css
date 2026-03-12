@@ -395,7 +395,7 @@ body {
 }
 
 .language-selector select {
-    background: transparent;
+    background: black;
     color: white;
     border: none;
     outline: none;

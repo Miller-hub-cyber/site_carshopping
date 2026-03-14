@@ -1,7 +1,7 @@
-/* Variáveis de Cores e Fontes baseadas no Layout */
+/* ================= VARIÁVEIS ================= */
 :root {
-    --primary-blue: #23416b; /* Azul dos botões e cards */
-    --primary-red: #cc1818; /* Vermelho dos textos destaque */
+    --primary-blue: #23416b;
+    --primary-red: #cc1818;
     --dark-bg: #000000;
     --light-bg: #f5f5f7;
     --text-dark: #333333;
@@ -9,11 +9,10 @@
     --font-main: 'Inter', sans-serif;
 }
 
-/* Reset Básico */
+/* ================= RESET BÁSICO ================= */
 * {
     margin: 0;
     padding: 0;
-    
     box-sizing: border-box;
 }
 
@@ -21,16 +20,22 @@ body {
     font-family: var(--font-main);
     color: var(--text-dark);
     background-color: var(--text-light);
+    line-height: 1.5;
 }
 
+img {
+    max-width: 100%;
+    display: block; /* Remove espaços em branco indesejados abaixo de imagens */
+}
+
+/* Container flexível (Removido height fixa de 30px que quebrava o conteúdo) */
 .container {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 0 20px;
-    height: 30px;
 }
 
-/* --- CABEÇALHO --- */
+/* ================= CABEÇALHO ================= */
 .header {
     background-color: var(--text-light);
     padding: 30px 0;
@@ -39,6 +44,7 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+
 }
 
 .header-container {
@@ -58,6 +64,11 @@ body {
     color: var(--text-dark);
     font-size: 14px;
     font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-blue);
 }
 
 .header-actions {
@@ -71,6 +82,11 @@ body {
     color: var(--text-dark);
     font-size: 14px;
     font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.action-link:hover {
+    color: var(--primary-blue);
 }
 
 .btn-primary {
@@ -81,7 +97,7 @@ body {
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -94,15 +110,16 @@ body {
     border: none;
     font-size: 24px;
     cursor: pointer;
+    color: var(--text-dark);
 }
 
-/* --- HERO SECTION --- */
+/* ================= HERO SECTION ================= */
 .hero {
-    /* Simulação de fundo para o Hero. No original são 3 fotos cortadas */
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fotos/Tela\ principal.png') center/cover no-repeat;
-    height: 900px;
+    min-height: 900px; /* Alterado para min-height para responsividade */
     display: flex;
     align-items: center;
+    padding-top: 100px; /* Compensação do menu fixo */
 }
 
 .hero-content h1 {
@@ -135,7 +152,7 @@ body {
 .search-bar input {
     background: transparent;
     border: none;
-    color: white;
+    color: var(--text-light);
     width: 300px;
     outline: none;
     font-size: 14px;
@@ -146,11 +163,11 @@ body {
     font-weight: 600;
 }
 
-/* --- CARROS MAIS POPULARES (GRID CSS) --- */
+/* ================= CARROS MAIS POPULARES ================= */
 .popular-cars {
     background-color: var(--dark-bg);
     padding: 60px 0;
-    height: 700px;
+    min-height: 700px;
 }
 
 .popular-cars h2 {
@@ -161,7 +178,7 @@ body {
 
 .cars-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     grid-auto-rows: 250px;
 }
@@ -170,6 +187,7 @@ body {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
+    background-color: #222; /* Fallback enquanto a imagem carrega */
 }
 
 .car-card img {
@@ -179,18 +197,18 @@ body {
 }
 
 .large-card {
-    grid-row: span 2; /* Ocupa duas linhas inteiras */
+    grid-row: span 2;
 }
 
 .wide-card {
-    grid-column: span 2; /* Ocupa duas colunas inteiras */
+    grid-column: span 2;
 }
 
 .favorite-btn {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: white;
+    background: var(--text-light);
     border: none;
     border-radius: 50%;
     width: 35px;
@@ -201,17 +219,23 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
 }
 
 .favorite-btn.active i {
     color: var(--primary-red);
-    font-weight: 900; /* Solid icon */
+    font-weight: 900;
 }
 
-/* --- EMPRESAS PARCEIRAS --- */
+/* ================= EMPRESAS PARCEIRAS ================= */
 .partners {
     padding: 60px 0;
-    height: 700px;
+    min-height: 700px;
+    display: flex;
     align-items: center;
 }
 
@@ -232,14 +256,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     flex: 2;
-}
-
-.logo-item {
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    color: #555;
-    /* Adicionar logo background image ou tag IMG aqui */
+    align-items: center;
 }
 
 .testimonial-box {
@@ -248,6 +265,7 @@ body {
     border-radius: 15px;
     padding: 30px;
     position: relative;
+    background-color: var(--text-light);
 }
 
 .icon-chat {
@@ -255,7 +273,7 @@ body {
     top: -25px;
     right: 20px;
     background: #4fc3f7;
-    color: white;
+    color: var(--text-light);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -270,18 +288,18 @@ body {
     line-height: 1.6;
 }
 
-/* --- CATEGORIAS --- */
+/* ================= CATEGORIAS ================= */
 .categories {
     background-color: var(--light-bg);
     padding: 60px 0;
     text-align: center;
-    height: 500px;
+    min-height: 500px;
 }
 
 .section-badge {
     display: inline-block;
     background-color: var(--primary-blue);
-    color: white;
+    color: var(--text-light);
     padding: 10px 40px;
     border-radius: 30px;
     font-weight: bold;
@@ -295,7 +313,7 @@ body {
 }
 
 .category-card {
-    background: white;
+    background: var(--text-light);
     padding: 20px;
     border-radius: 15px;
     width: 220px;
@@ -321,45 +339,50 @@ body {
 .category-card h3 {
     font-size: 18px;
     color: var(--text-dark);
+    transition: color 0.3s ease;
 }
 
-/* Estado Ativo/Hover das Categorias */
 .category-card:hover {
     background-color: var(--primary-blue);
+    transform: translateY(-5px);
 }
 
-.category-card:hover h3, .category-card.active h3 {
-    color: white;
+.category-card:hover h3, 
+.category-card.active h3 {
+    color: var(--text-light);
 }
 
-/* --- FOOTER --- */
+/* ================= FOOTER ================= */
 .footer {
     background-color: var(--dark-bg);
-    color: var(--white);
+    color: var(--text-light); /* Corrigido: var(--white) não existia */
     padding: 40px 0 20px 0;
     font-size: 12px;
-    height: 300px;
+    min-height: 300px;
 }
 
 .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--text-light);
     padding-bottom: 30px;
     margin-bottom: 20px;
 }
+
 .contact-info {
-    color: white;
+    color: var(--text-light);
 }
 
 .footer-logo {
     width: 50px;
     height: 50px;
-    background: white;
+    background: var(--text-light);
     border-radius: 50%;
     display: flex;
-    
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .app-links {
@@ -371,7 +394,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: var(--text-light);
 }
 
 .copyright {
@@ -383,9 +406,14 @@ body {
 }
 
 .legal-links a {
-    color: white;
+    color: var(--text-light);
     text-decoration: none;
     margin: 0 5px;
+    transition: opacity 0.3s ease;
+}
+
+.legal-links a:hover {
+    opacity: 0.8;
 }
 
 .language-selector {
@@ -395,14 +423,24 @@ body {
 }
 
 .language-selector select {
-    background: black;
-    color: white;
+    background: var(--dark-bg);
+    color: var(--text-light);
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
-/* --- RESPONSIVIDADE --- */
+/* ================= RESPONSIVIDADE ================= */
 @media (max-width: 992px) {
+    .hero-content h1 {
+        margin-left: 0;
+        text-align: center;
+    }
+    .search-bar {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
     .cars-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -410,11 +448,9 @@ body {
         grid-column: span 1;
         grid-row: span 1;
     }
-    
     .partners-content {
         flex-direction: column;
     }
-    
     .category-grid {
         flex-wrap: wrap;
     }
@@ -422,12 +458,12 @@ body {
 
 @media (max-width: 768px) {
     .nav-menu {
-        display: none; /* Esconde menu no mobile por padrão */
+        display: none;
         position: absolute;
         top: 70px;
         left: 0;
         width: 100%;
-        background: white;
+        background: var(--text-light);
         flex-direction: column;
         padding: 20px;
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
@@ -440,10 +476,11 @@ body {
 
     .nav-menu ul {
         flex-direction: column;
+        align-items: center;
     }
 
     .header-actions {
-        display: none; /* Simplifica o header no mobile */
+        display: none;
     }
 
     .mobile-menu-btn {
@@ -452,10 +489,6 @@ body {
 
     .hero h1 {
         font-size: 28px;
-    }
-    
-    .search-bar {
-        width: 100%;
     }
     
     .search-bar input {

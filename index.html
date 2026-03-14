@@ -5,132 +5,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarShopping - Encontre seu Carro</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Otimização de carregamento de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones e Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="fotos/logo.ico" type="image/x-icon">
 </head>
 
 <body>
 
+    <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container header-container">
             <div class="logo">
-                <img src="fotos/logo.png" alt="CarShopping Logo">
+                <img src="fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
             </div>
 
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <nav class="nav-menu" id="nav-menu">
+            <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
                 <ul>
-                    <li><a href="#">Categorias</a></li>
-                    <li><a href="#">Compra</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Venda o Carro</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="#footer">Categorias</a></li>
+                    <li><a href="#compra">Compra</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#venda-carro">Venda o Carro</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
 
             <div class="header-actions">
                 <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
                 <a href="#" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
-                <a href="#" class="btn-primary">Cadastre-se</a>
+                <a href="cadastro.html" class="btn-primary">Cadastre-se</a>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- ================= HERO SECTION ================= -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Compre seu <span class="highlight">Carro zero</span><br>aqui, com segurança e<br>com
-                    atendimento<br>especializado</h1>
+                <h1>Compre seu <span class="highlight">Carro zero</span><br>aqui, com segurança e<br>com atendimento<br>especializado</h1>
 
                 <div class="search-bar">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="FAÇA SUA BUSCA PRECISA AQUI">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="text" placeholder="FAÇA SUA BUSCA PRECISA AQUI" aria-label="Campo de busca de carros">
                 </div>
-            </div>
             </div>
         </section>
 
+        <!-- ================= POPULAR CARS ================= -->
         <section class="popular-cars">
             <div class="container">
                 <h2>CARROS MAIS POPULARES</h2>
                 <div class="cars-grid">
                     <div class="car-card large-card">
-                        <button class="favorite-btn"><i class="fa-regular fa-heart"></i></button>
-                        <img src="fotos/image 1.png" alt="Carros">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                        <img src="fotos/image 1.png" alt="Carros SUV em destaque" loading="lazy">
                     </div>
                     <div class="car-card wide-card">
-                        <button class="favorite-btn"><i class="fa-regular fa-heart"></i></button>
-                        <img src="fotos/image 2.png" alt="Carros Brancos">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                        <img src="fotos/image 2.png" alt="Carros Brancos enfileirados" loading="lazy">
                     </div>
                     <div class="car-card small-card">
-                        <button class="favorite-btn"><i class="fa-regular fa-heart"></i></button>
-                        <img src="fotos/image 3.png" alt="Interior">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                        <img src="fotos/image 3.png" alt="Interior detalhado do carro" loading="lazy">
                     </div>
                     <div class="car-card small-card">
-                        <button class="favorite-btn"><i class="fa-regular fa-heart"></i></button>
-                        <img src="fotos/image 4.png" alt="Frente do Carro">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                        <img src="fotos/image 4.png" alt="Frente do Carro Esportivo" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ================= PARCEIROS ================= -->
         <section class="partners">
             <div class="container">
                 <h2>EMPRESAS PARCEIRAS</h2>
                 <div class="partners-content">
                     <div class="logos-grid">
-                        <a href="#"><img src="fotos/byd logo.png" alt="BYD"></a>
-                        <a href="#"><img src="fotos/BMW logo.png" alt="BMW"></a>
-                        <a href="#"><img src="fotos/renault.png" alt="RENAULT"></a>
-                        <a href="#"><img src="fotos/ferrari.png" alt="FERRARI"></a>
-                        <a href="#"><img src="fotos/hyudai.png" alt="HYUNDAI"></a>
-                        <a href="#"><img src="fotos/fiat.png" alt="FIAT"></a>
-                        <a href="#"><img src="fotos/volksvagem.png" alt="VW"></a>
-                        <a href="#"><img src="fotos/toyta.png" alt="TOYOTA"></a>
-                        <a href="#"><img src="fotos/jeep.png" alt="JEEP"></a>
-                        <a href="#"><img src="fotos/ford.png" alt="FORD"></a>
-                        <a href="#"><img src="fotos/audi.png" alt="AUDI"></a>
-                        <a href="#"><img src="fotos/honda logo.png" alt="HONDA"></a>
+                        <a href="#"><img src="fotos/byd logo.png" alt="Logo BYD" loading="lazy"></a>
+                        <a href="#"><img src="fotos/BMW logo.png" alt="Logo BMW" loading="lazy"></a>
+                        <a href="#"><img src="fotos/renault.png" alt="Logo RENAULT" loading="lazy"></a>
+                        <a href="#"><img src="fotos/ferrari.png" alt="Logo FERRARI" loading="lazy"></a>
+                        <a href="#"><img src="fotos/hyudai.png" alt="Logo HYUNDAI" loading="lazy"></a>
+                        <a href="#"><img src="fotos/fiat.png" alt="Logo FIAT" loading="lazy"></a>
+                        <a href="#"><img src="fotos/volksvagem.png" alt="Logo VW" loading="lazy"></a>
+                        <a href="#"><img src="fotos/toyta.png" alt="Logo TOYOTA" loading="lazy"></a>
+                        <a href="#"><img src="fotos/jeep.png" alt="Logo JEEP" loading="lazy"></a>
+                        <a href="#"><img src="fotos/ford.png" alt="Logo FORD" loading="lazy"></a>
+                        <a href="#"><img src="fotos/audi.png" alt="Logo AUDI" loading="lazy"></a>
+                        <a href="#"><img src="fotos/honda logo.png" alt="Logo HONDA" loading="lazy"></a>
                     </div>
 
-                    <div class="testimonial-box">
+                    <aside class="testimonial-box">
                         <div class="icon-chat"><i class="fa-solid fa-comment-dots"></i></div>
-                        <p>Agradecemos às empresas e marcas parceiras pela confiança e contribuição, que nos ajudam a
-                            crescer e oferecer as melhores oportunidades em nosso site de compra e venda de motos e
-                            carros.</p>
-                    </div>
+                        <p>Agradecemos às empresas e marcas parceiras pela confiança e contribuição, que nos ajudam a crescer e oferecer as melhores oportunidades em nosso site de compra e venda de motos e carros.</p>
+                    </aside>
                 </div>
             </div>
         </section>
 
+        <!-- ================= CATEGORIAS ================= -->
         <section class="categories">
+            <div id="footer"></div>
             <div class="container">
                 <div class="section-badge">Categorias</div>
 
                 <div class="category-grid">
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="fotos/image 5.png" alt="SUV"></div>
+                        <div class="img-wrapper"><img src="fotos/image 5.png" alt="Categoria SUV" loading="lazy"></div>
                         <h3>SUVs</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="fotos/image 6.png" alt="Sedan"></div>
+                        <div class="img-wrapper"><img src="fotos/image 6.png" alt="Categoria Sedan" loading="lazy"></div>
                         <h3>Sedans</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="fotos/image 7.png" alt="Picape"></div>
+                        <div class="img-wrapper"><img src="fotos/image 7.png" alt="Categoria Picape" loading="lazy"></div>
                         <h3>Picapes</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="fotos/image 8.png" alt="Elétricos"></div>
+                        <div class="img-wrapper"><img src="fotos/image 8.png" alt="Categoria Elétricos" loading="lazy"></div>
                         <h3>Elétricos</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="fotos/image 9.png" alt="Hatches"></div>
+                        <div class="img-wrapper"><img src="fotos/image 9.png" alt="Categoria Hatches" loading="lazy"></div>
                         <h3>Hatches</h3>
                     </div>
                 </div>
@@ -138,6 +146,7 @@
         </section>
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -145,12 +154,12 @@
                     <p>Contato: <span>11 99999-9999</span></p>
                 </div>
                 <div class="footer-logo">
-                    <img src="fotos/unama.png" alt="Unama">
+                    <img src="fotos/unama.png" alt="Logo Unama" loading="lazy">
                 </div>
                 <div class="app-links">
-                    <img src="fotos/GooglePlay.png" alt="Google Play">
-                    <img src="fotos/AppStore.png" alt="App Store">
-                    <img src="fotos/HuaweiAppGallery.png" alt="App Gallery">
+                    <a href="#"><img src="fotos/GooglePlay.png" alt="Disponível no Google Play" loading="lazy"></a>
+                    <a href="#"><img src="fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
+                    <a href="#"><img src="fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery" loading="lazy"></a>
                 </div>
             </div>
 
@@ -168,7 +177,7 @@
                 </div>
                 <div class="language-selector">
                     <i class="fa-solid fa-globe"></i>
-                    <select>
+                    <select aria-label="Selecione o idioma">
                         <option>English</option>
                         <option>Português</option>
                     </select>

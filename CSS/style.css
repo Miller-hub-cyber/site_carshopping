@@ -115,7 +115,7 @@ img {
 
 /* ================= HERO SECTION ================= */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fotos/Tela\ principal.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../fotos/Tela\ principal.png') center/cover no-repeat;
     min-height: 900px; /* Alterado para min-height para responsividade */
     display: flex;
     align-items: center;

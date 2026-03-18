@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             // Após cadastrar, redireciona o usuário para a tela de login
             alert("Cadastro realizado com sucesso! Faça login para continuar.");
-            window.location.href = "login.html";
+            window.location.href = "../HTML/login.html";
             
             submitBtn.innerHTML = 'Cadastrar';
             submitBtn.disabled = false;

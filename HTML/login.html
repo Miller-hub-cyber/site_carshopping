@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarShopping - Criar Conta</title>
+    <title>CarShopping - Login Moderno</title>
     
     <!-- Fonte Google: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,8 +11,8 @@
     <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Arquivo CSS (Pode usar o mesmo do login ou criar um style.css global) -->
-    <link rel="stylesheet" href="cadastro.css">
+    <!-- Arquivo CSS -->
+    <link rel="stylesheet" href="../CSS/login.css">
 </head>
 <body>
 
@@ -21,12 +21,13 @@
         
         <!-- Logo -->
         <div class="logo">
-            <img src="fotos/logo.png" alt="CarShopping Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <!-- Caso não tenha a imagem, exibirá o texto estilizado -->
+            <img src="../fotos/logo.png" alt="CarShopping Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <span style="display: none;">Car<span>Shopping</span></span>
         </div>
 
-        <h2>Crie sua conta</h2>
-        <p class="subtitle">Junte-se a nós rápida e facilmente</p>
+        <h2>Bem-vindo de volta!</h2>
+        <p class="subtitle">Faça login para continuar</p>
 
         <!-- Botões de Login Social -->
         <div class="social-login">
@@ -41,60 +42,48 @@
         </div>
 
         <div class="divider">
-            <span>ou cadastre-se com e-mail</span>
+            <span>ou entre com seu e-mail</span>
         </div>
 
         <!-- Área de mensagens de erro -->
         <div id="error-message" class="error-message"></div>
 
-        <!-- Formulário de Cadastro -->
-        <form id="register-form">
-            <!-- Campo Nome -->
-            <div class="input-group">
-                <i class="fas fa-user icon"></i>
-                <input type="text" id="name" placeholder="Nome Completo" autocomplete="name">
-            </div>
-
+        <!-- Formulário -->
+        <form id="login-form">
             <!-- Campo E-mail -->
             <div class="input-group">
                 <i class="fas fa-envelope icon"></i>
-                <input type="email" id="email" placeholder="E-mail" autocomplete="email">
+                <input type="email" id="email" placeholder="E-mail ou Usuário" autocomplete="email">
             </div>
 
             <!-- Campo Senha -->
             <div class="input-group">
                 <i class="fas fa-lock icon"></i>
-                <input type="password" id="password" placeholder="Senha" autocomplete="new-password">
-                <i class="fas fa-eye toggle-password" title="Mostrar/Ocultar Senha"></i>
+                <input type="password" id="password" placeholder="Senha" autocomplete="current-password">
+                <i class="fas fa-eye toggle-password" id="toggle-password" title="Mostrar/Ocultar Senha"></i>
             </div>
 
-            <!-- Campo Confirmar Senha -->
-            <div class="input-group">
-                <i class="fas fa-lock icon"></i>
-                <input type="password" id="confirm-password" placeholder="Confirmar Senha" autocomplete="new-password">
-                <i class="fas fa-eye toggle-password" title="Mostrar/Ocultar Senha"></i>
-            </div>
-
-            <!-- Termos de uso -->
+            <!-- Opções extras -->
             <div class="options">
                 <label class="checkbox-container">
-                    <input type="checkbox" id="terms"> 
+                    <input type="checkbox" id="remember"> 
                     <span class="checkmark"></span>
-                    Concordo com os <a href="#" class="forgot-password">Termos de Uso</a>
+                    Lembrar de mim
                 </label>
+                <a href="#" class="forgot-password">Esqueci a senha</a>
             </div>
 
-            <!-- Botão de Cadastro -->
-            <button type="submit" class="login-btn" id="submit-btn">Cadastrar</button>
+            <!-- Botão de Login -->
+            <button type="submit" class="login-btn" id="submit-btn">Entrar</button>
         </form>
 
-        <!-- Link para voltar ao login -->
+        <!-- Link para criar conta -->
         <div class="signup">
-            Já tem uma conta? <a href="login.html">Faça login</a>
+            Não tem uma conta? <a href="../HTML/cadastro.html">Crie uma agora</a>
         </div>
     </div>
 
     <!-- Arquivo JavaScript -->
-    <script src="cadastro.js"></script>
+    <script src="../JS/login.js"></script>
 </body>
 </html>

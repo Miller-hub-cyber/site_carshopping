@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             // AQUI: Redirecionamento para a página principal
             // Substitua "pagina-principal.html" pelo caminho correto do seu projeto
-            window.location.href = "index.html";
+            window.location.href = "../HTML/index.html";
             
             // Caso o redirecionamento falhe localmente, volta o botão ao normal
             submitBtn.innerHTML = 'Entrar';

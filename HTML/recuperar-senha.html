@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarShopping - Recuperar Senha</title>
+    
+    <!-- Fonte Google: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Arquivo CSS (Reaproveitando o do login e adicionando o novo caso precise) -->
+    <link rel="stylesheet" href="../CSS/login.css">
+</head>
+<body>
+
+    <!-- Container principal com a mesma animação e estilo do login -->
+    <div class="login-container fade-in">
+        
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../fotos/logo.png" alt="CarShopping Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display: none;">Car<span>Shopping</span></span>
+        </div>
+
+        <h2>Esqueceu a senha?</h2>
+        <p class="subtitle">Digite seu e-mail cadastrado e enviaremos um link de recuperação.</p>
+
+        <!-- Área de mensagens de erro e sucesso -->
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
+
+        <!-- Formulário -->
+        <form id="recovery-form">
+            <!-- Campo E-mail -->
+            <div class="input-group">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" id="email" placeholder="Digite seu e-mail" autocomplete="email">
+            </div>
+
+            <!-- Botão de Envio -->
+            <button type="submit" class="login-btn" id="submit-btn">Enviar Link de Recuperação</button>
+        </form>
+
+        <!-- Link para voltar ao Login -->
+        <div class="signup">
+            Lembrou a senha? <a href="../HTML/login.html"><i class="fas fa-arrow-left"></i> Voltar ao Login</a>
+        </div>
+    </div>
+
+    <!-- Arquivo JavaScript específico para recuperação -->
+    <script src="../JS/recuperar-senha.js"></script>
+</body>
+</html>

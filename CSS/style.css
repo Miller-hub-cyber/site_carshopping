@@ -383,6 +383,7 @@ img {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    margin-left: 350px;
 }
 
 .app-links {

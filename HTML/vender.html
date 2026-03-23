@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarShopping - Venda seu Carro</title>
+
+    <!-- Otimização de carregamento de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Ícones e Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/vender.css">
+    <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../HTML/index.html">
+                    <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
+                <ul>
+                    <li><a href="../HTML/index.html#footer">Categorias</a></li>
+                    <li><a href="../HTML/index.html#compra">Compra</a></li>
+                    <li><a href="../HTML/index.html#servicos">Serviços</a></li>
+                    <li><a href="vender.html" class="active">Venda o Carro</a></li>
+                    <li><a href="../HTML/index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
+                <a href="#" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+                <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= VENDA DE CARRO ================= -->
+        <section id="venda-carro" class="venda-carro">
+            <div class="container">
+                <div class="venda-header">
+                    <div class="section-badge">Venda o Seu Carro</div>
+                    <h1>Venda seu carro com facilidade</h1>
+                    <p class="section-subtitle">Anuncie seu veículo em poucos minutos e chegue a milhares de compradores
+                        interessados</p>
+                </div>
+
+                <!-- Formulário de Venda -->
+                <form id="form-venda-carro" class="venda-form">
+                    <!-- BLOCO 1: INFORMAÇÕES DO VEÍCULO -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fa-solid fa-car"></i> Informações do Veículo</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="marca">Marca <span class="required">*</span></label>
+                                <select id="marca" name="marca" required>
+                                    <option value="">Selecione a marca</option>
+                                    <option value="Fiat">Fiat</option>
+                                    <option value="Volkswagen">Volkswagen</option>
+                                    <option value="Renault">Renault</option>
+                                    <option value="Toyota">Toyota</option>
+                                    <option value="Honda">Honda</option>
+                                    <option value="BMW">BMW</option>
+                                    <option value="Audi">Audi</option>
+                                    <option value="Hyundai">Hyundai</option>
+                                    <option value="Ferrari">Ferrari</option>
+                                    <option value="Jeep">Jeep</option>
+                                    <option value="Ford">Ford</option>
+                                    <option value="BYD">BYD</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="modelo">Modelo <span class="required">*</span></label>
+                                <input type="text" id="modelo" name="modelo" placeholder="Ex: Argo, Golf, Sandero"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ano">Ano <span class="required">*</span></label>
+                                <input type="number" id="ano" name="ano" placeholder="Ex: 2023" min="1990" max="2099"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="quilometragem">Quilometragem <span class="required">*</span></label>
+                                <input type="number" id="quilometragem" name="quilometragem" placeholder="Ex: 50000"
+                                    min="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="combustivel">Tipo de Combustível <span class="required">*</span></label>
+                                <select id="combustivel" name="combustivel" required>
+                                    <option value="">Selecione o tipo</option>
+                                    <option value="Gasolina">Gasolina</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Flex (Gasolina/Álcool)">Flex (Gasolina/Álcool)</option>
+                                    <option value="Elétrico">Elétrico</option>
+                                    <option value="Híbrido">Híbrido</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cambio">Câmbio <span class="required">*</span></label>
+                                <select id="cambio" name="cambio" required>
+                                    <option value="">Selecione o câmbio</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Automático">Automático</option>
+                                    <option value="Automático CVT">Automático CVT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOCO 2: PREÇO E DESCRIÇÃO -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fa-solid fa-tag"></i> Preço e Descrição</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="preco">Preço <span class="required">*</span></label>
+                                <div class="price-input">
+                                    <span class="currency">R$</span>
+                                    <input type="number" id="preco" name="preco" placeholder="0,00" min="0" step="0.01"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="descricao">Descrição <span class="required">*</span></label>
+                            <textarea id="descricao" name="descricao"
+                                placeholder="Descreva o estado do veículo, características especiais, extras, etc."
+                                rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- BLOCO 3: IMAGENS -->
+                    <div class="form-section">
+                        <h3 class="form-section-title"><i class="fa-solid fa-images"></i> Imagens do Veículo</h3>
+
+                        <div class="form-group full-width">
+                            <label for="imagens">Enviar Imagens <span class="required">*</span></label>
+                            <div class="upload-area" id="upload-area">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <p>Clique ou arraste as imagens aqui</p>
+                                <span class="upload-text">Até 10 imagens (JPG, PNG, WebP)</span>
+                                <input type="file" id="imagens" name="imagens" accept="image/*" multiple hidden
+                                    required>
+                            </div>
+                            <div id="preview-container" class="preview-container"></div>
+                        </div>
+                    </div>
+
+                    <!-- BLOCO 4: BOTÕES -->
+                    <div class="form-actions">
+                        <button type="reset" class="btn-secondary">Limpar Formulário</button>
+                        <button type="submit" class="btn-primary">Anunciar Meu Carro</button>
+                    </div>
+                </form>
+
+                <!-- Mensagem de Sucesso -->
+                <div id="success-message" class="success-message" style="display: none;">
+                    <div class="success-content">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <h3>Anúncio Enviado com Sucesso!</h3>
+                        <p>Seu carro foi anunciado e está visível para todos os compradores.</p>
+                        <p class="reference-id">ID do Anúncio: <strong>VD-<span id="reference-id"></span></strong></p>
+                        <button type="button" class="btn-primary" id="btn-novo-anuncio">Anunciar Outro Carro</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="contact-info">
+                    <p>Contato: <span>11 99999-9999</span></p>
+                </div>
+                <div class="footer-logo">
+                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                </div>
+                <div class="app-links">
+                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Disponível no Google Play" loading="lazy"></a>
+                    <a href="#"><img src="../fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
+                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery"
+                            loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="email">
+                    <p>Email: <br><span>carshopping@gmail.com</span></p>
+                </div>
+                <div class="copyright">
+                    <p>© Todos os Direitos Reservados</p>
+                    <div class="legal-links">
+                        <a href="#">Accessibility Certificate</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Cookie Settings</a>
+                    </div>
+                </div>
+                <div class="language-selector">
+                    <i class="fa-solid fa-globe"></i>
+                    <select aria-label="Selecione o idioma">
+                        <option>English</option>
+                        <option>Português</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JS/script.js"></script>
+    <script src="../JS/vender.js"></script>
+</body>
+
+</html>

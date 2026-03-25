@@ -9,6 +9,35 @@
     --font-main: 'Inter', sans-serif;
 }
 
+/* ================= ANIMAÇÕES ================= */
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.3);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 6px 15px rgba(204, 24, 24, 0.4);
+    }
+}
+
 /* ================= RESET BÁSICO ================= */
 * {
     margin: 0;
@@ -224,16 +253,25 @@ img {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 16px;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .favorite-btn:hover {
     transform: scale(1.1);
 }
 
+.favorite-btn.active {
+    animation: heartPulse 0.6s ease-out;
+}
+
 .favorite-btn.active i {
     color: var(--primary-red);
     font-weight: 900;
+    animation: heartBeat 0.6s ease-out;
+}
+
+.favorite-btn.active:hover {
+    transform: scale(1.2);
 }
 
 /* ================= INFORMAÇÕES DOS CARROS ================= */

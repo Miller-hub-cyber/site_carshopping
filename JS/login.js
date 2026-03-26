@@ -77,15 +77,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1500);
     }
 });
-
-/* Adicione isso ao final do seu style.css para o efeito de erro */
-/*
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-.shake {
-    animation: shake 0.5s;
-}
-*/

@@ -1,0 +1,410 @@
+/* ================= CONTATO - PÁGINA DEDICADA ================= */
+
+/* Override para página de contato */
+main {
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+/* ================= SEÇÃO CONTATO ================= */
+.contato-section {
+    background-color: #ffffff;
+    padding: 80px 0;
+    min-height: auto;
+}
+
+.contato-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.contato-header .section-badge {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 10px 40px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contato-header h1 {
+    color: var(--primary-blue);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================= LAYOUT DO CONTEÚDO ================= */
+.contato-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* ================= INFO DE CONTATO ================= */
+.contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.info-card i {
+    color: var(--primary-red);
+    font-size: 24px;
+    width: 30px;
+    text-align: center;
+}
+
+.info-card span {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* ================= FORMULÁRIO ================= */
+.contato-form {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-section {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section-title {
+    color: var(--primary-blue);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-section-title i {
+    color: var(--primary-red);
+    font-size: 20px;
+}
+
+/* ================= LAYOUT DO FORMULÁRIO ================= */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.required {
+    color: var(--primary-red);
+    font-weight: bold;
+}
+
+/* ================= INPUTS E SELECTS ================= */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    color: var(--text-dark);
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(35, 65, 107, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-main);
+}
+
+/* ================= BOTÕES DE AÇÃO ================= */
+.form-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.btn-primary {
+    padding: 12px 40px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1a3050;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(35, 65, 107, 0.3);
+}
+
+/* ================= FEEDBACK ================= */
+.feedback {
+    font-size: 15px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.feedback.erro {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid #dc3545;
+}
+
+.feedback.sucesso {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    border: 1px solid #28a745;
+}
+
+/* ================= BOTÃO FLUTUANTE ================= */
+.chat-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.chat-float:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+}
+
+.chat-float:active {
+    transform: scale(1.05);
+}
+
+/* Animações */
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+    }
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 992px) {
+    .contato-form {
+        padding: 30px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contato-header h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contato-section {
+        padding: 60px 0;
+    }
+
+    .contato-header {
+        margin-bottom: 40px;
+    }
+
+    .contato-header h1 {
+        font-size: 24px;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .contato-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contato-form {
+        padding: 25px;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+
+    .form-section-title {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .form-actions {
+        margin-top: 30px;
+    }
+
+    .btn-primary {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .chat-float {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contato-section {
+        padding: 40px 0;
+    }
+
+    .contato-header h1 {
+        font-size: 20px;
+    }
+
+    .contato-form {
+        padding: 20px;
+    }
+
+    .info-card {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .info-card i {
+        font-size: 20px;
+        width: auto;
+    }
+
+    .chat-float {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}

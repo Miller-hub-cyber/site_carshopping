@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarShopping - Fale Conosco</title>
+
+    <!-- Otimização de carregamento de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Ícones e Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/contato.css">
+    <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../HTML/index.html">
+                    <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
+                <ul>
+                    <li><a href="../HTML/index.html#footer">Categorias</a></li>
+                    <li><a href="../HTML/index.html#compra">Compra</a></li>
+                    <li><a href="../HTML/index.html#servicos">Serviços</a></li>
+                    <li><a href="../HTML/vender.html">Venda o Carro</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
+                <a href="#" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+                <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= CONTATO ================= -->
+        <section id="contato" class="contato-section">
+            <div class="container">
+                <div class="contato-header">
+                    <div class="section-badge">Contato</div>
+                    <h1>Entre em contato conosco</h1>
+                    <p class="section-subtitle">Estamos prontos para te ajudar a encontrar o carro ideal ou tirar
+                        qualquer dúvida sobre nossos serviços</p>
+                </div>
+
+                <div class="contato-content">
+                    <!-- INFO -->
+                    <div class="contato-info">
+                        <div class="info-card">
+                            <i class="fas fa-phone"></i>
+                            <span>(91) 97009-9947</span>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-envelope"></i>
+                            <span>carshopping@gmail.com</span>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Belém - PA</span>
+                        </div>
+                    </div>
+
+                    <!-- FORM -->
+                    <form id="formContato" class="contato-form">
+                        <!-- BLOCO 1: INFORMAÇÕES PESSOAIS -->
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fa-solid fa-user"></i> Informações Pessoais</h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nome">Nome completo <span class="required">*</span></label>
+                                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telefone">Telefone <span class="required">*</span></label>
+                                    <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="assunto">Assunto <span class="required">*</span></label>
+                                    <select id="assunto" name="assunto" required>
+                                        <option value="">Selecione o assunto</option>
+                                        <option value="compra">Dúvida sobre compra</option>
+                                        <option value="venda">Dúvida sobre venda</option>
+                                        <option value="suporte">Suporte técnico</option>
+                                        <option value="geral">Informações gerais</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 2: MENSAGEM -->
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fa-solid fa-message"></i> Sua Mensagem</h3>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="mensagem">Mensagem <span class="required">*</span></label>
+                                    <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem aqui..."
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Enviar mensagem</button>
+                        </div>
+
+                        <p id="feedback" class="feedback"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTÃO FLUTUANTE -->
+    <a href="#" class="chat-float">
+        <i class="fas fa-comments"></i>
+    </a>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="contact-info">
+                    <p>Contato: <span>11 99999-9999</span></p>
+                </div>
+                <div class="footer-logo">
+                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                </div>
+                <div class="app-links">
+                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Disponível no Google Play" loading="lazy"></a>
+                    <a href="#"><img src="../fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
+                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery"
+                            loading="lazy"></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="email">
+                    <p>Email: <br><span>carshopping@gmail.com</span></p>
+                </div>
+                <div class="copyright">
+                    <p>© Todos os Direitos Reservados</p>
+                    <div class="legal-links">
+                        <a href="#">Accessibility Certificate</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Cookie Settings</a>
+                    </div>
+                </div>
+                <div class="language-selector">
+                    <i class="fa-solid fa-globe"></i>
+                    <select aria-label="Selecione o idioma">
+                        <option>English</option>
+                        <option>Português</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="../JS/script.js"></script>
+    <script src="../JS/contato.js"></script>
+
+</body>
+
+</html>

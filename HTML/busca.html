@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webmotors - Compre, venda e financie carros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../CSS/busca.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+
+    <!-- Top Bar -->
+    <!-- <div class="bg-gray-900 text-white text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="text-gray-400">Nossos canais de atendimento são 100% digitais. Precisa de ajuda?</span>
+                <a href="#" class="text-orange-400 hover:text-orange-300 font-medium">Clique aqui</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hover:text-gray-300">Para sua loja</a>
+                <a href="#" class="hover:text-gray-300">Segurança</a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Header Principal -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
+                <ul>
+                    <li><a href="#footer">Categorias</a></li>
+                    <li><a href="#compra">Compra</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="../HTML/vender.html">Venda o Carro</a></li>
+                    <li><a href="../HTML/contato.html">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
+                <a href="#" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+                <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Search Section -->
+    <div class="bg-white border-b border-gray-200 pb-6">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Encontre seu próximo carro</h1>
+            
+            <!-- Quick Filters -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    </svg>
+                    Localização
+                </button>
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    Marca
+                </button>
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    Ano
+                </button>
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    Preço
+                </button>
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    Quilometragem
+                </button>
+                <button class="filter-btn px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 flex items-center gap-2 bg-white">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                    Mais Filtros
+                </button>
+            </div>
+
+            <!-- Marcas Populares -->
+            <div class="mb-4">
+                <p class="text-sm text-gray-500 mb-3">Marcas populares:</p>
+                <div class="flex gap-3 overflow-x-auto brand-scroll pb-2">
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Chevrolet</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Fiat</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Ford</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Honda</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Hyundai</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Mitsubishi</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Renault</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Toyota</button>
+                    <button class="flex-shrink-0 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-orange-500 hover:text-orange-500 transition-all text-sm font-medium">Volkswagen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-6 flex gap-6">
+        
+        <!-- Sidebar Filters -->
+        <aside class="w-64 flex-shrink-0 hidden lg:block">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-semibold text-gray-800">Filtros</h3>
+                    <button class="texto-azul text-sm font-medium hover:underline">Limpar</button>
+                </div>
+
+                <!-- Tipo -->
+                <div class="mb-6">
+                    <label class="flex items-center gap-2 mb-2 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 texto-azul rounded border-gray-300 focus:ring-orange-500">
+                        <span class="text-sm text-gray-700">Novos</span>
+                        <span class="text-xs text-gray-400 ml-auto">(0)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 texto-azul rounded border-gray-300 focus:ring-orange-500">
+                        <span class="text-sm text-gray-700">Usados</span>
+                        <span class="text-xs text-gray-400 ml-auto">(402.495)</span>
+                    </label>
+                </div>
+
+                <!-- Localização -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Localização</h4>
+                    <div class="relative">
+                        <input type="text" placeholder="Digite sua cidade ou estado" class="w-full pl-3 pr-8 py-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none">
+                        <svg class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Identificamos a sua localização para mostrar as melhores oportunidades perto de você.</p>
+                </div>
+
+                <!-- Marca -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Marca</h4>
+                    <select class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none bg-white">
+                        <option>Selecione uma marca</option>
+                        <option>Chevrolet</option>
+                        <option>Fiat</option>
+                        <option>Ford</option>
+                        <option>Honda</option>
+                        <option>Hyundai</option>
+                        <option>Toyota</option>
+                        <option>Volkswagen</option>
+                    </select>
+                </div>
+
+                <!-- Ano -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Ano</h4>
+                    <div class="flex gap-2 mb-2">
+                        <input type="number" placeholder="De" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                        <input type="number" placeholder="Até" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-2 py-1 bg-gray-100 rounded text-xs hover:bg-orange-100 hover:text-orange-600 transition-colors">2025</button>
+                        <button class="px-2 py-1 bg-gray-100 rounded text-xs hover:bg-orange-100 hover:text-orange-600 transition-colors">2024</button>
+                        <button class="px-2 py-1 bg-gray-100 rounded text-xs hover:bg-orange-100 hover:text-orange-600 transition-colors">2023</button>
+                        <button class="px-2 py-1 bg-gray-100 rounded text-xs hover:bg-orange-100 hover:text-orange-600 transition-colors">2022</button>
+                    </div>
+                </div>
+
+                <!-- Preço -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Preço</h4>
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" placeholder="Mínimo" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                        <input type="text" placeholder="Máximo" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="preco" class="text-orange-500 focus:ring-orange-500">
+                            <span class="text-sm text-gray-600">Até R$ 60 mil</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="preco" class="text-orange-500 focus:ring-orange-500">
+                            <span class="text-sm text-gray-600">Até R$ 80 mil</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="preco" class="text-orange-500 focus:ring-orange-500">
+                            <span class="text-sm text-gray-600">Até R$ 100 mil</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- KM -->
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-800 mb-2">Quilometragem</h4>
+                    <div class="flex gap-2">
+                        <input type="number" placeholder="Mínimo" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                        <input type="number" placeholder="Máximo" class="w-full p-2 border border-gray-300 rounded-lg text-sm focus:border-orange-500 outline-none">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Results Area -->
+        <main class="flex-1">
+            <!-- Toolbar -->
+            <div class="flex flex-wrap items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-600">Ordenar por:</span>
+                    <select class="text-sm font-medium text-gray-800 bg-transparent border-none focus:ring-0 cursor-pointer">
+                        <option>Mais relevantes</option>
+                        <option>Maior preço</option>
+                        <option>Menor preço</option>
+                        <option>Ano mais novo</option>
+                        <option>Menor Km</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-500">402.495 resultados</span>
+                    <div class="flex border border-gray-300 rounded-lg overflow-hidden">
+                        <button class="p-2 bg-orange-500 text-white">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                            </svg>
+                        </button>
+                        <button class="p-2 bg-white text-gray-600 hover:bg-gray-50">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Carros -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&h=400&fit=crop" alt="Honda Civic" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-used text-white text-xs px-2 py-1 rounded-full font-medium">USADO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium text-gray-700 shadow-md">
+                            <span class="text-orange-500 font-bold">R$ 12.000</span> abaixo da FIPE
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Honda Civic</h3>
+                        <p class="text-sm text-gray-500 mb-3">2.0 16V FLEX EX 4P CVT</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2022/2022
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                45.000 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-400 line-through">R$ 129.900</span>
+                                <p class="text-xl font-bold text-gray-800">R$ 117.900</p>
+                            </div>
+                            <span class="text-xs text-gray-500">São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer" style="animation-delay: 0.1s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&h=400&fit=crop" alt="Toyota Corolla" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-new text-white text-xs px-2 py-1 rounded-full font-medium">NOVO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Toyota Corolla</h3>
+                        <p class="text-sm text-gray-500 mb-3">2.0 VVT-IE FLEX ALTIS PREMIUM</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2024/2025
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                0 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-bold text-gray-800">R$ 159.990</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Rio de Janeiro, RJ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer" style="animation-delay: 0.2s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&h=400&fit=crop" alt="Volkswagen T-Cross" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-used text-white text-xs px-2 py-1 rounded-full font-medium">USADO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Volkswagen T-Cross</h3>
+                        <p class="text-sm text-gray-500 mb-3">1.0 200 TSI COMFORTLINE</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2021/2021
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                32.500 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-bold text-gray-800">R$ 98.500</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Belo Horizonte, MG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer" style="animation-delay: 0.3s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop" alt="Jeep Compass" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-used text-white text-xs px-2 py-1 rounded-full font-medium">USADO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Jeep Compass</h3>
+                        <p class="text-sm text-gray-500 mb-3">2.0 16V DIESEL LONGITUDE 4X4</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2020/2020
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                78.000 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-bold text-gray-800">R$ 145.000</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Curitiba, PR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer" style="animation-delay: 0.4s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=400&fit=crop" alt="BMW X1" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-used text-white text-xs px-2 py-1 rounded-full font-medium">USADO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 right-3 bg-green-500 text-white px-2 py-1 rounded text-xs font-medium shadow-md">
+                            IPVA Pago
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">BMW X1</h3>
+                        <p class="text-sm text-gray-500 mb-3">2.0 16V TURBO ACTIVEFLEX SDRIVE20I</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2019/2019
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                55.200 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-bold text-gray-800">R$ 168.900</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Porto Alegre, RS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover slide-up cursor-pointer" style="animation-delay: 0.5s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&h=400&fit=crop" alt="Hyundai HB20" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 tag-new text-white text-xs px-2 py-1 rounded-full font-medium">NOVO</div>
+                        <button class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-1">Hyundai HB20</h3>
+                        <p class="text-sm text-gray-500 mb-3">1.0 TGDI FLEX EVOLUTION MANUAL</p>
+                        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                2024/2025
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                0 km
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xl font-bold text-gray-800">R$ 82.990</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Fortaleza, CE</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-8 flex justify-center">
+                <nav class="flex items-center gap-2">
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 disabled:opacity-50" disabled>Anterior</button>
+                    <button class="px-4 py-2 bg-orange-500 text-white rounded-lg font-medium">1</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">2</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">3</button>
+                    <span class="px-2 text-gray-400">...</span>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">100</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">Próxima</button>
+                </nav>
+            </div>
+        </main>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <p class="text-sm text-gray-600 flex-1">
+                A Webmotors usa Cookies, pequenos arquivos para aprimorar e proteger a sua experiência. 
+                <a href="#" class="text-orange-500 hover:underline">Termos de Uso</a> e 
+                <a href="#" class="text-orange-500 hover:underline">Política de Privacidade</a>
+            </p>
+            <button class="px-6 py-2 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors" onclick="this.parentElement.parentElement.remove()">
+                Aceitar
+            </button>
+        </div>
+    </div>
+</body>
+</html>

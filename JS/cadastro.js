@@ -79,7 +79,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Se passar em tudo, esconde erro e processa
         errorMessage.style.display = "none";
-        processRegistration();
+
+        // ... dentro do seu registerForm.addEventListener, após todas as validações ...
+
+        // Crie o objeto com os dados
+        const dados = {
+            username: nameValue,
+            email: emailValue,
+            password: passwordValue
+        };
+
+        // Envie para o backend
+        fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // "User registered successfully!"
+            if(data === "User registered successfully!") window.location.href = "/login";
+        })
+        .catch(err => console.error("Erro ao cadastrar:", err));
     });
 
     // Função para exibir erros
@@ -95,20 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Função que simula o envio ao backend
-    function processRegistration() {
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.8";
+    // function processRegistration() {
+    //     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
+    //     submitBtn.disabled = true;
+    //     submitBtn.style.opacity = "0.8";
 
-        // Simula delay de 1.5s
-        setTimeout(() => {
-            // Após cadastrar, redireciona o usuário para a tela de login
-            alert("Cadastro realizado com sucesso! Faça login para continuar.");
-            window.location.href = "../HTML/login.html";
+    //     // Simula delay de 1.5s
+    //     setTimeout(() => {
+    //         // Após cadastrar, redireciona o usuário para a tela de login
+    //         alert("Cadastro realizado com sucesso! Faça login para continuar.");
+    //         window.location.href = "../HTML/login.html";
             
-            submitBtn.innerHTML = 'Cadastrar';
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-        }, 1500);
-    }
+    //         submitBtn.innerHTML = 'Cadastrar';
+    //         submitBtn.disabled = false;
+    //         submitBtn.style.opacity = "1";
+    //     }, 1500);
+    // }
 });

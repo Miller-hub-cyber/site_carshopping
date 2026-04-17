@@ -379,7 +379,7 @@ img {
     background-color: var(--light-bg);
     padding: 60px 0;
     text-align: center;
-    min-height: 700px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;

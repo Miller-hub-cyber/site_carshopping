@@ -22,29 +22,28 @@
     <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
-            </div>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
 
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+                <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
+                    <ul>
+                        <li><a href="../HTML/index.html#footer">Categorias</a></li>
+                        <li><a href="../HTML/busca.html">Compra</a></li>
+                        <li><a href="../HTML/index.html#servicos">Serviços</a></li>
+                        <li><a href="../HTML/vender.html">Venda o Carro</a></li>
+                        <li><a href="../HTML/contato.html">Contato</a></li>
+                    </ul>
+                </nav>
 
-            <nav class="nav-menu" id="nav-menu" aria-label="Navegação Principal">
-                <ul>
-                    <li><a href="../HTML/index.html#footer">Categorias</a></li>
-                    <li><a href="../HTML/busca.html">Compra</a></li>
-                    <li><a href="../HTML/index.html#servicos">Serviços</a></li>
-                    <li><a href="../HTML/vender.html">Venda o Carro</a></li>
-                    <li><a href="../HTML/contato.html">Contato</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
-                <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
-                <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
-            </div>
+                <div class="header-actions">
+                    <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
+                    <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i>
+                        Buscar</a>
+                    <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
+                </div>
         </div>
     </header>
 
@@ -133,7 +132,7 @@
                 <h2>EMPRESAS PARCEIRAS</h2>
                 <div class="partners-content">
                     <div class="logos-grid">
-                        <a href="#"><img src="../fotos/byd logo.png" alt="Logo BYD" loading="lazy"></a>
+                        <a href="#"><img src="../fotos/byd_logo.png" alt="Logo BYD" loading="lazy"></a>
                         <a href="#"><img src="../fotos/BMW logo.png" alt="Logo BMW" loading="lazy"></a>
                         <a href="#"><img src="../fotos/renault.png" alt="Logo RENAULT" loading="lazy"></a>
                         <a href="#"><img src="../fotos/ferrari.png" alt="Logo FERRARI" loading="lazy"></a>
@@ -144,7 +143,7 @@
                         <a href="#"><img src="../fotos/jeep.png" alt="Logo JEEP" loading="lazy"></a>
                         <a href="#"><img src="../fotos/ford.png" alt="Logo FORD" loading="lazy"></a>
                         <a href="#"><img src="../fotos/audi.png" alt="Logo AUDI" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/honda logo.png" alt="Logo HONDA" loading="lazy"></a>
+                        <a href="#"><img src="../fotos/honda_logo.png" alt="Logo HONDA" loading="lazy"></a>
                     </div>
 
                     <aside class="testimonial-box">
@@ -158,7 +157,7 @@
         </section>
 
         <!-- ================= CATEGORIAS ================= -->
-         <div id="footer"></div>
+        <div id="footer"></div>
         <section class="categories">
             <div id="footer"></div>
             <div class="container">
@@ -236,7 +235,8 @@
         </div>
     </footer>
 
-    <script src="JS/script.js"></script>
+    <script src="../JS/script.js"></script>
+    <script src="../JS/cookies.js"></script>
 </body>
 
 </html>

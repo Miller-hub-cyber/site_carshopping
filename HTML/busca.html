@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- CSS Principal e Específico da Busca -->
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/busca.css">
@@ -22,9 +22,8 @@
     <!-- ================= HEADER (INTACTO) ================= -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
+            <a href="../HTML/index.html" class="logo">
                 <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
-            </div>
             <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -52,14 +51,15 @@
                 <h1>Encontre o <span class="highlight">carro ideal</span> para você</h1>
                 <div class="search-bar">
                     <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <input type="text" id="text-search" placeholder="Digite marca, modelo ou versão..." aria-label="Campo de busca">
+                    <input type="text" id="text-search" placeholder="Digite marca, modelo ou versão..."
+                        aria-label="Campo de busca">
                 </div>
             </div>
         </section>
 
         <!-- ================= ÁREA PRINCIPAL ================= -->
         <section class="search-layout container">
-            
+
             <!-- Botão Mobile para Filtros -->
             <button class="mobile-filter-btn" id="mobile-filter-btn">
                 <i class="fa-solid fa-sliders"></i> Filtrar Resultados
@@ -145,10 +145,12 @@
 
                 <!-- GRID DE CARROS -->
                 <div class="results-grid" id="cars-container">
-                    
+
                     <!-- Card 1 -->
-                    <div class="car-card list-card" data-brand="honda" data-price="86000" data-year="2025" data-km="10000">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                    <div class="car-card list-card" data-brand="honda" data-price="86000" data-year="2025"
+                        data-km="10000">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/hb20.png" alt="Honda HB20" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Honda HB20 Vision</h3>
@@ -164,7 +166,8 @@
 
                     <!-- Card 2 -->
                     <div class="car-card list-card" data-brand="fiat" data-price="69990" data-year="2026" data-km="0">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/image 2.png" alt="Fiat Mobi" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Fiat Mobi Like</h3>
@@ -179,8 +182,10 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="car-card list-card" data-brand="chevrolet" data-price="101790" data-year="2026" data-km="0">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                    <div class="car-card list-card" data-brand="chevrolet" data-price="101790" data-year="2026"
+                        data-km="0">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/onix.png" alt="Chevrolet Onix" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Chevrolet Onix LTZ</h3>
@@ -195,8 +200,10 @@
                     </div>
 
                     <!-- Card 4 -->
-                    <div class="car-card list-card" data-brand="chevrolet" data-price="90000" data-year="2020" data-km="30000">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                    <div class="car-card list-card" data-brand="chevrolet" data-price="90000" data-year="2020"
+                        data-km="30000">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/tracker.png" alt="Chevrolet Tracker" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Chevrolet Tracker Turbo</h3>
@@ -210,9 +217,11 @@
                         </div>
                     </div>
 
-                     <!-- Card 5 (Fake extra) -->
-                     <div class="car-card list-card" data-brand="fiat" data-price="120000" data-year="2025" data-km="5000">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                    <!-- Card 5 (Fake extra) -->
+                    <div class="car-card list-card" data-brand="fiat" data-price="120000" data-year="2025"
+                        data-km="5000">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/image 5.png" alt="Fiat Fastback" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Fiat Fastback Audace</h3>
@@ -226,9 +235,10 @@
                         </div>
                     </div>
 
-                     <!-- Card 6 (Fake extra) -->
-                     <div class="car-card list-card" data-brand="honda" data-price="150000" data-year="2025" data-km="0">
-                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i class="fa-regular fa-heart"></i></button>
+                    <!-- Card 6 (Fake extra) -->
+                    <div class="car-card list-card" data-brand="honda" data-price="150000" data-year="2025" data-km="0">
+                        <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
+                                class="fa-regular fa-heart"></i></button>
                         <img src="../fotos/image 6.png" alt="Honda Civic" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Honda Civic Híbrido</h3>
@@ -272,7 +282,8 @@
                 <div class="app-links">
                     <a href="#"><img src="../fotos/GooglePlay.png" alt="Disponível no Play Store" loading="lazy"></a>
                     <a href="#"><img src="../fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
-                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery" loading="lazy"></a>
+                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery"
+                            loading="lazy"></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -301,5 +312,7 @@
     <!-- Scripts -->
     <script src="../JS/script.js"></script>
     <script src="../JS/busca.js"></script>
+    <script src="../JS/cookies.js"></script>
 </body>
+
 </html>

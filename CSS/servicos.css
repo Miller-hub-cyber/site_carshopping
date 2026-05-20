@@ -1,0 +1,243 @@
+/* ================= VARIÁVEIS COMPARTILHADAS ================= */
+:root {
+    --primary-blue: #23416b;
+    --primary-red: #cc1818;
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-gray: #f8f9fa;
+    --border-color: #e0e0e0;
+}
+
+/* ================= HERO REFORMULADO ================= */
+.services-hero {
+    background: linear-gradient(rgba(35, 65, 107, 0.05), rgba(35, 65, 107, 0.05));
+    padding: 140px 0 80px;
+}
+
+.services-hero .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text h1 {
+    font-size: 42px;
+    color: var(--primary-blue);
+    line-height: 1.1;
+    margin: 20px 0;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-image-placeholder img {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 100%;
+}
+
+/* ================= FILTROS ================= */
+.service-tabs {
+    padding: 50px 0 20px;
+    background: #fff;
+}
+
+.tabs-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.service-filter {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    color: #666;
+}
+
+.service-filter.active, .service-filter:hover {
+    background: var(--primary-blue);
+    color: #fff;
+    border-color: var(--primary-blue);
+}
+
+/* ================= CARDS DE SERVIÇO ================= */
+.service-cards-section {
+    padding: 40px 0 80px;
+    background: #fff;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: transparent;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(35, 65, 107, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.service-card p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.btn-card {
+    margin-top: auto;
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-card:hover {
+    text-decoration: underline;
+}
+
+/* ================= PASSOS (STEPS) ================= */
+.steps-section {
+    background: var(--bg-gray);
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.step-item {
+    text-align: center;
+}
+
+.step-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(35, 65, 107, 0.1);
+    margin-bottom: -20px;
+}
+
+.step-item h4 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+/* ================= FAQ ================= */
+.faq-section {
+    padding: 80px 0;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    color: var(--primary-blue);
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.faq-answer p {
+    padding-bottom: 20px;
+    color: #666;
+}
+
+/* Botão outline extra */
+.btn-secondary-outline {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 10px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .services-hero .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-actions { justify-content: center; }
+    .hero-image-placeholder { display: none; }
+    .steps-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarShopping - Serviços Automotivos</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Ícones e Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css"> <!-- CSS Global -->
+    <link rel="stylesheet" href="../CSS/servicos.css"> <!-- CSS Específico desta página -->
+    <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- ================= HEADER (Padronizado) ================= -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="../HTML/index.html" class="logo">
+                <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+            </a>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="../HTML/index.html#">Categorias</a></li>
+                    <li><a href="../HTML/busca.html">Compra</a></li>
+                    <li><a href="servicos.html" class="active">Serviços</a></li>
+                    <li><a href="../HTML/vender.html">Venda o Carro</a></li>
+                    <li><a href="../HTML/contato.html">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
+                <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+                <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= HERO SECTION ================= -->
+        <section class="services-hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="section-badge">Nossos Serviços</span>
+                    <h1>Cuidado especializado para o seu veículo</h1>
+                    <p>Conectamos você às melhores oficinas parceiras para garantir segurança, estética e performance para seu carro.</p>
+                    <div class="hero-actions">
+                        <a href="#service-tabs" class="btn-primary">Explorar Serviços</a>
+                        <a href="../HTML/contato.html" class="btn-secondary-outline">Falar com Consultor</a>
+                    </div>
+                </div>
+                <div class="hero-image-placeholder">
+                    <!-- Usando a mesma imagem de referência das outras páginas para manter o padrão -->
+                    <img src="../fotos/Tela principal.png" alt="Manutenção Automotiva">
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FILTROS ================= -->
+        <section class="service-tabs" id="service-tabs">
+            <div class="container">
+                <div class="tabs-row" role="tablist">
+                    <button class="service-filter active" data-category="all">Todos</button>
+                    <button class="service-filter" data-category="manutencao">Manutenção</button>
+                    <button class="service-filter" data-category="estetica">Estética</button>
+                    <button class="service-filter" data-category="pneus">Pneus</button>
+                    <button class="service-filter" data-category="eletrica">Elétrica</button>
+                    <button class="service-filter" data-category="seguranca">Segurança</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GRID DE SERVIÇOS ================= -->
+        <section class="service-cards-section">
+            <div class="container">
+                <div class="service-grid">
+                    <article class="service-card" data-category="manutencao">
+                        <div class="card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <h3>Revisão Completa</h3>
+                        <p>Check-up detalhado de motor, freios e suspensão para sua total segurança em viagens.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Solicitar Orçamento <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+
+                    <article class="service-card" data-category="pneus">
+                        <div class="card-icon"><i class="fa-solid fa-car-tire"></i></div>
+                        <h3>Pneus e Alinhamento</h3>
+                        <p>Troca, balanceamento e geometria computadorizada para maior estabilidade e economia.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Ver Opções <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+
+                    <article class="service-card" data-category="estetica">
+                        <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3>Estética Automotiva</h3>
+                        <p>Polimento, cristalização e higienização interna profunda com produtos de alta performance.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Agendar <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+
+                    <article class="service-card" data-category="eletrica">
+                        <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Reparo Elétrico</h3>
+                        <p>Diagnóstico completo de baterias, alternadores, sensores e sistemas de iluminação.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Pedir Ajuda <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+
+                    <article class="service-card" data-category="seguranca">
+                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>Inspeção de Segurança</h3>
+                        <p>Verificação rigorosa de airbags, cintos e sistemas de proteção para você dirigir tranquilo.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Agendar Inspeção <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+
+                    <article class="service-card" data-category="manutencao">
+                        <div class="card-icon"><i class="fa-solid fa-oil-can"></i></div>
+                        <h3>Troca de Óleo</h3>
+                        <p>Lubrificantes originais e filtros específicos para prolongar a vida útil do seu motor.</p>
+                        <a href="../HTML/contato.html" class="btn-card">Agendar <i class="fa-solid fa-chevron-right"></i></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= COMO FUNCIONA ================= -->
+        <section class="steps-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Como funciona o agendamento</h2>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <h4>Escolha o Serviço</h4>
+                        <p>Selecione a categoria ideal para o que seu carro precisa no momento.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <h4>Receba Propostas</h4>
+                        <p>Oficinas parceiras verificadas enviam orçamentos transparentes.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <h4>Realize o Serviço</h4>
+                        <p>Agende o melhor horário e finalize com garantia e comodidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAQ ================= -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Dúvidas</span>
+                    <h2>Perguntas Frequentes</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">Os preços são fechados? <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Os valores podem variar conforme as peças necessárias e o modelo do veículo, mas você sempre receberá um orçamento detalhado antes de qualquer execução.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Qual a garantia dos serviços? <i class="fa-solid fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Todos os nossos parceiros oferecem garantia mínima de 90 dias, podendo estender-se conforme o tipo de reparo e peças utilizadas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER (Padronizado) ================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="contact-info">
+                    <p>Contato: <span>11 99999-9999</span></p>
+                </div>
+                <div class="footer-logo">
+                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                </div>
+                <div class="app-links">
+                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Google Play"></a>
+                    <a href="#"><img src="../fotos/AppStore.png" alt="App Store"></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="email">
+                    <p>Email: <br><span>carshopping@gmail.com</span></p>
+                </div>
+                <div class="copyright">
+                    <p>© Todos os Direitos Reservados</p>
+                </div>
+                <div class="language-selector">
+                    <i class="fa-solid fa-globe"></i>
+                    <select>
+                        <option>Português</option>
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../JS/script.js"></script> <!-- Script Global (Menu Mobile) -->
+    <script src="../JS/servicos.js"></script> <!-- Script Específico desta página -->
+    <script src="../JS/cookies.js"></script>
+</body>
+
+</html>

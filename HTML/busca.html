@@ -9,16 +9,19 @@
     <!-- Fontes e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- CSS Principal e Específico da Busca -->
+    <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/busca.css">
     <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Pular para conteúdo</a>
     <!-- ================= HEADER (INTACTO) ================= -->
     <header class="header">
         <div class="container header-container">
@@ -40,12 +43,13 @@
                     <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
                     <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i>
                         Buscar</a>
+                    <button class="dark-mode-btn" id="dark-mode-btn" aria-label="Ativar modo escuro" title="Ativar modo escuro"><i class="fa-solid fa-moon"></i></button>
                     <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
                 </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- ================= HERO BUSCA ================= -->
         <section class="hero hero-busca">
             <div class="hero-content text-center">
@@ -147,6 +151,86 @@
                 <!-- GRID DE CARROS -->
                 <div class="results-grid" id="cars-container">
 
+                    <!-- Skeleton cards (removidos por JS após carregamento) -->
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="car-card list-card skeleton-card" aria-hidden="true">
+                        <div class="skeleton-block" style="height:180px;border-radius:8px 8px 0 0;"></div>
+                        <div class="car-info">
+                            <div class="skeleton-block" style="height:20px;width:70%;margin-bottom:10px;"></div>
+                            <div class="skeleton-block" style="height:24px;width:50%;margin-bottom:14px;"></div>
+                            <div style="display:flex;gap:8px;margin-bottom:14px;">
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                                <div class="skeleton-block" style="height:14px;flex:1;"></div>
+                            </div>
+                            <div class="skeleton-block" style="height:38px;width:100%;"></div>
+                        </div>
+                    </div>
+
                     <!-- Card 1 -->
                     <div class="car-card list-card" data-brand="honda" data-price="86000" data-year="2025"
                         data-km="10000">
@@ -169,7 +253,7 @@
                     <div class="car-card list-card" data-brand="fiat" data-price="69990" data-year="2026" data-km="0">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/image 2.png" alt="Fiat Mobi" loading="lazy">
+                        <img src="../fotos/image_2.png" alt="Fiat Mobi" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Fiat Mobi Like</h3>
                             <p class="car-price">R$ 69.990</p>
@@ -223,7 +307,7 @@
                         data-km="5000">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/image 5.png" alt="Fiat Fastback" loading="lazy">
+                        <img src="../fotos/image_5.png" alt="Fiat Fastback" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Fiat Fastback Audace</h3>
                             <p class="car-price">R$ 120.000</p>
@@ -240,7 +324,7 @@
                     <div class="car-card list-card" data-brand="honda" data-price="150000" data-year="2025" data-km="0">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/image 6.png" alt="Honda Civic" loading="lazy">
+                        <img src="../fotos/image_6.png" alt="Honda Civic" loading="lazy">
                         <div class="car-info">
                             <h3 class="car-title">Honda Civic Híbrido</h3>
                             <p class="car-price">R$ 150.000</p>
@@ -311,6 +395,8 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="../JS/utils.js"></script>
+    <script src="../JS/api.js"></script>
     <script src="../JS/script.js"></script>
     <script src="../JS/busca.js"></script>
     <script src="../JS/cookies.js"></script>

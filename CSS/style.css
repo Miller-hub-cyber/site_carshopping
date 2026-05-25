@@ -1,42 +1,4 @@
-/* ================= VARIÁVEIS ================= */
-:root {
-    --primary-blue: #23416b;
-    --primary-red: #cc1818;
-    --dark-bg: #000000;
-    --light-bg: #f5f5f7;
-    --text-dark: #333333;
-    --text-light: #ffffff;
-    --font-main: 'Inter', sans-serif;
-}
-
-/* ================= ANIMAÇÕES ================= */
-@keyframes heartBeat {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    25% {
-        transform: scale(1.3);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-@keyframes heartPulse {
-
-    0%,
-    100% {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    50% {
-        box-shadow: 0 6px 15px rgba(204, 24, 24, 0.4);
-    }
-}
+/* Variáveis e animações definidas em tokens.css */
 
 /* ================= RESET BÁSICO ================= */
 * {
@@ -97,8 +59,27 @@ img {
     transition: color 0.3s ease;
 }
 
-.nav-menu a:hover {
+.nav-menu a {
+    position: relative;
+    padding-bottom: 3px;
+}
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.25s ease;
+}
+.nav-menu a:hover,
+.nav-menu a.active {
     color: var(--primary-blue);
+}
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
 }
 
 .header-actions {
@@ -145,7 +126,7 @@ img {
 
 /* ================= HERO SECTION ================= */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../fotos/Tela\ principal.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../fotos/Tela_principal.png') center/cover no-repeat;
     min-height: 900px;
     /* Alterado para min-height para responsividade */
     display: flex;
@@ -741,29 +722,207 @@ img {
     }
 }
 
-@keyframes shake {
+/* @keyframes shake e .shake definidos em tokens.css */
 
-    0%,
-    100% {
-        transform: translateX(0);
-    }
+/* =====================================================
+   FASE 2 — MELHORIAS DE UI/UX
+   ===================================================== */
 
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateX(-5px);
-    }
+/* ===== SKIP LINK (Acessibilidade) ===== */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    background: var(--primary-blue);
+    color: var(--text-light) !important;
+    padding: 10px 20px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-weight: 700;
+    font-size: 14px;
+    z-index: 10000;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; outline: 3px solid var(--primary-red); }
 
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateX(5px);
-    }
+/* ===== DARK MODE TOGGLE ===== */
+.dark-mode-btn {
+    background: none;
+    border: 1.5px solid var(--border-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--text-dark);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+.dark-mode-btn:hover {
+    background: var(--light-bg);
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    transform: rotate(20deg);
 }
 
-.shake {
-    animation: shake 0.5s;
+/* ===== HEADER SCROLL — GLASS EFFECT ===== */
+.header {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+.header--scrolled {
+    background-color: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== SCROLL-TO-TOP ===== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 28px;
+    width: 46px;
+    height: 46px;
+    background: var(--primary-blue);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+    z-index: 997;
+    box-shadow: var(--shadow-md);
+}
+.scroll-top-btn.cs-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+.scroll-top-btn:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-3px);
+}
+
+/* ===== MICROINTERAÇÕES — BOTÕES ===== */
+.btn-primary {
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease !important;
+}
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(35, 65, 107, 0.35) !important;
+}
+.btn-primary:active {
+    transform: translateY(0) !important;
+    box-shadow: none !important;
+}
+
+/* ===== MICROINTERAÇÕES — CAR CARDS ===== */
+.car-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.popular-cars .car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== MICROINTERAÇÕES — CATEGORY CARDS ===== */
+.category-card {
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.category-card:hover {
+    box-shadow: 0 8px 24px rgba(35, 65, 107, 0.2);
+}
+
+/* ===== MICROINTERAÇÕES — FAVORITE BUTTON ===== */
+.favorite-btn {
+    transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+.favorite-btn:hover { transform: scale(1.15); }
+
+/* ===== FOCUS VISIBLE (Acessibilidade) ===== */
+:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ===== DARK MODE — OVERRIDES DE COMPONENTES ===== */
+[data-theme="dark"] body {
+    background-color: #0f172a;
+    color: var(--text-dark);
+}
+[data-theme="dark"] .header {
+    background-color: #0f172a;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: none;
+}
+[data-theme="dark"] .header--scrolled {
+    background-color: rgba(15, 23, 42, 0.9) !important;
+}
+[data-theme="dark"] .nav-menu a,
+[data-theme="dark"] .action-link {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .nav-menu a::after {
+    background: var(--primary-blue);
+}
+[data-theme="dark"] .mobile-menu-btn {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .popular-cars {
+    background-color: #020617;
+}
+[data-theme="dark"] .car-card {
+    background-color: #1e293b;
+}
+[data-theme="dark"] .partners {
+    background-color: #0a1628;
+}
+[data-theme="dark"] .partners h2 {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .testimonial-box {
+    background-color: #1e293b;
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .testimonial-box p {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .categories {
+    background-color: #0f172a;
+}
+[data-theme="dark"] .category-card {
+    background-color: #1e293b;
+}
+[data-theme="dark"] .category-card h3 {
+    color: var(--text-dark);
+}
+[data-theme="dark"] .category-card:hover,
+[data-theme="dark"] .category-card.active {
+    background-color: var(--primary-blue);
+}
+[data-theme="dark"] .footer {
+    background-color: #020617;
+}
+[data-theme="dark"] .dark-mode-btn {
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+/* Skeleton em dark mode */
+[data-theme="dark"] .skeleton-block {
+    background: #1e293b;
+}
+[data-theme="dark"] .skeleton-block::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
 }

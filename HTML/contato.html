@@ -9,16 +9,19 @@
     <!-- Otimização de carregamento de fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
 
     <!-- Ícones e Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/contato.css">
     <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Pular para conteúdo</a>
 
     <!-- ================= HEADER ================= -->
     <header class="header">
@@ -46,12 +49,13 @@
             <div class="header-actions">
                 <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
                 <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i> Buscar</a>
+                <button class="dark-mode-btn" id="dark-mode-btn" aria-label="Ativar modo escuro" title="Ativar modo escuro"><i class="fa-solid fa-moon"></i></button>
                 <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- ================= CONTATO ================= -->
         <section id="contato" class="contato-section">
             <div class="container">
@@ -190,7 +194,9 @@
         </div>
     </footer>
 
-    <!-- JS -->
+    <!-- Scripts -->
+    <script src="../JS/utils.js"></script>
+    <script src="../JS/api.js"></script>
     <script src="../JS/script.js"></script>
     <script src="../JS/contato.js"></script>
     <script src="../JS/cookies.js"></script>

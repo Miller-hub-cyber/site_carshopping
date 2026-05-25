@@ -1,12 +1,4 @@
-/* ================= VARIÁVEIS COMPARTILHADAS ================= */
-:root {
-    --primary-blue: #23416b;
-    --primary-red: #cc1818;
-    --text-dark: #333;
-    --text-light: #fff;
-    --bg-gray: #f8f9fa;
-    --border-color: #e0e0e0;
-}
+/* Variáveis definidas em tokens.css */
 
 /* ================= HERO REFORMULADO ================= */
 .services-hero {

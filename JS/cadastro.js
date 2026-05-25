@@ -1,114 +1,83 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // Selecionando os elementos do DOM
-    const registerForm = document.getElementById("register-form");
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const confirmPasswordInput = document.getElementById("confirm-password");
-    const termsCheckbox = document.getElementById("terms");
-    
-    // Seleciona todos os botões de mostrar/ocultar senha (agora são dois)
-    const togglePasswordBtns = document.querySelectorAll(".toggle-password");
-    
-    const errorMessage = document.getElementById("error-message");
-    const submitBtn = document.getElementById("submit-btn");
+"use strict";
 
-    // Funcionalidade: Mostrar / Ocultar Senha para múltiplos campos
+document.addEventListener("DOMContentLoaded", () => {
+    const registerForm         = document.getElementById("register-form");
+    const nameInput            = document.getElementById("name");
+    const emailInput           = document.getElementById("email");
+    const passwordInput        = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+    const termsCheckbox        = document.getElementById("terms");
+    const togglePasswordBtns   = document.querySelectorAll(".toggle-password");
+    const errorMessage         = document.getElementById("error-message");
+    const submitBtn            = document.getElementById("submit-btn");
+
+    /* Redireciona se já está logado */
+    if (CSApi.auth.isLoggedIn()) {
+        window.location.href = "../HTML/index.html";
+        return;
+    }
+
     togglePasswordBtns.forEach(btn => {
         btn.addEventListener("click", function () {
-            // Encontra o input que está antes do ícone clicado
             const input = this.previousElementSibling;
-            
-            // Verifica o tipo atual do input e alterna
-            const type = input.getAttribute("type") === "password" ? "text" : "password";
+            const type  = input.getAttribute("type") === "password" ? "text" : "password";
             input.setAttribute("type", type);
-            
-            // Alterna o ícone (olho aberto / olho fechado)
             this.classList.toggle("fa-eye");
             this.classList.toggle("fa-eye-slash");
         });
     });
 
-    // Funcionalidade: Validação e envio do formulário
-    registerForm.addEventListener("submit", function (event) {
+    registerForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        // Pegando os valores
-        const nameValue = nameInput.value.trim();
-        const emailValue = emailInput.value.trim();
-        const passwordValue = passwordInput.value.trim();
+        const nameValue            = nameInput.value.trim();
+        const emailValue           = emailInput.value.trim();
+        const passwordValue        = passwordInput.value.trim();
         const confirmPasswordValue = confirmPasswordInput.value.trim();
-        const isTermsAccepted = termsCheckbox.checked;
+        const isTermsAccepted      = termsCheckbox.checked;
 
-        // Validando se os campos estão vazios
-        if (nameValue === "" || emailValue === "" || passwordValue === "" || confirmPasswordValue === "") {
+        if (!nameValue || !emailValue || !passwordValue || !confirmPasswordValue) {
             showError("Por favor, preencha todos os campos.");
-            triggerShake();
+            CSUtils.triggerShake(registerForm);
             return;
         }
-
-        // Validação de formato de e-mail
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailValue)) {
+        if (!CSUtils.validateEmail(emailValue)) {
             showError("Por favor, insira um e-mail válido.");
-            triggerShake();
+            CSUtils.triggerShake(registerForm);
             return;
         }
-
-        // Validar tamanho mínimo da senha
-        if (passwordValue.length < 6) {
-            showError("A senha deve ter pelo menos 6 caracteres.");
-            triggerShake();
+        if (passwordValue.length < 8) {
+            showError("A senha deve ter pelo menos 8 caracteres.");
+            CSUtils.triggerShake(registerForm);
             return;
         }
-
-        // Validação: Senhas conferem?
         if (passwordValue !== confirmPasswordValue) {
             showError("As senhas não coincidem.");
-            triggerShake();
+            CSUtils.triggerShake(registerForm);
             return;
         }
-
-        // Validação: Termos aceitos?
         if (!isTermsAccepted) {
             showError("Você precisa aceitar os Termos de Uso.");
-            triggerShake();
+            CSUtils.triggerShake(registerForm);
             return;
         }
 
-        // Se passar em tudo, esconde erro e processa
         errorMessage.style.display = "none";
-        processRegistration();
+        CSUtils.setButtonLoading(submitBtn, "Cadastrando...");
+
+        try {
+            await CSApi.register(nameValue, emailValue, passwordValue);
+            CSUtils.showToast("Cadastro realizado com sucesso! Bem-vindo ao CarShopping.", "success");
+            setTimeout(() => { window.location.href = "../HTML/index.html"; }, 1200);
+        } catch (err) {
+            CSUtils.resetButton(submitBtn, "Cadastrar");
+            showError(err.message ?? "Erro ao cadastrar. Tente novamente.");
+            CSUtils.triggerShake(registerForm);
+        }
     });
 
-    // Função para exibir erros
     function showError(message) {
-        errorMessage.textContent = message;
+        errorMessage.textContent   = message;
         errorMessage.style.display = "block";
-    }
-
-    // Função para tremer o formulário em caso de erro
-    function triggerShake() {
-        registerForm.classList.add("shake");
-        setTimeout(() => registerForm.classList.remove("shake"), 500);
-    }
-
-    // Função que simula o envio ao backend
-    function processRegistration() {
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.8";
-
-        // Simula delay de 1.5s
-        setTimeout(() => {
-            // Após cadastrar, redireciona o usuário para a tela de login
-            alert("Cadastro realizado com sucesso! Faça login para continuar.");
-            window.location.href = "../HTML/login.html";
-            
-            submitBtn.innerHTML = 'Cadastrar';
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-        }, 1500);
     }
 });

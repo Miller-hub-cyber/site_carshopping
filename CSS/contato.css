@@ -278,18 +278,7 @@ main {
     transform: scale(1.05);
 }
 
-/* Animações */
-@keyframes pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-    }
-
-    50% {
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
-    }
-}
+/* @keyframes pulse definido em tokens.css */
 
 /* ================= RESPONSIVIDADE ================= */
 @media (max-width: 992px) {

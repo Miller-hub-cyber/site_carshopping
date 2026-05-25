@@ -9,15 +9,18 @@
     <!-- Otimização de carregamento de fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
 
     <!-- Ícones e Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Pular para conteúdo</a>
 
     <!-- ================= HEADER ================= -->
     <header class="header">
@@ -42,12 +45,13 @@
                     <a href="#" class="action-link"><i class="fa-regular fa-heart"></i> Favorito</a>
                     <a href="../HTML/busca.html" class="action-link"><i class="fa-solid fa-magnifying-glass"></i>
                         Buscar</a>
+                    <button class="dark-mode-btn" id="dark-mode-btn" aria-label="Ativar modo escuro" title="Ativar modo escuro"><i class="fa-solid fa-moon"></i></button>
                     <a href="../HTML/cadastro.html" class="btn-primary">Cadastre-se</a>
                 </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- ================= HERO SECTION ================= -->
         <section class="hero">
             <div class="hero-content">
@@ -83,7 +87,7 @@
                     <div class="car-card wide-card">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/image 2.png" alt="Carros Brancos enfileirados" loading="lazy">
+                        <img src="../fotos/image_2.png" alt="Carros Brancos enfileirados" loading="lazy">
                         <div class="car-info">
                             <h3>Carros da FIAT</h3>
                             <p class="car-price">R$ 69.990</p>
@@ -133,7 +137,7 @@
                 <div class="partners-content">
                     <div class="logos-grid">
                         <a href="#"><img src="../fotos/byd_logo.png" alt="Logo BYD" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/BMW logo.png" alt="Logo BMW" loading="lazy"></a>
+                        <a href="#"><img src="../fotos/BMW_logo.png" alt="Logo BMW" loading="lazy"></a>
                         <a href="#"><img src="../fotos/renault.png" alt="Logo RENAULT" loading="lazy"></a>
                         <a href="#"><img src="../fotos/ferrari.png" alt="Logo FERRARI" loading="lazy"></a>
                         <a href="#"><img src="../fotos/hyudai.png" alt="Logo HYUNDAI" loading="lazy"></a>
@@ -165,27 +169,27 @@
 
                 <div class="category-grid">
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image 5.png" alt="Categoria SUV" loading="lazy">
+                        <div class="img-wrapper"><img src="../fotos/image_5.png" alt="Categoria SUV" loading="lazy">
                         </div>
                         <h3>SUVs</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image 6.png" alt="Categoria Sedan" loading="lazy">
+                        <div class="img-wrapper"><img src="../fotos/image_6.png" alt="Categoria Sedan" loading="lazy">
                         </div>
                         <h3>Sedans</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image 7.png" alt="Categoria Picape" loading="lazy">
+                        <div class="img-wrapper"><img src="../fotos/image_7.png" alt="Categoria Picape" loading="lazy">
                         </div>
                         <h3>Picapes</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image 8.png" alt="Categoria Elétricos"
+                        <div class="img-wrapper"><img src="../fotos/image_8.png" alt="Categoria Elétricos"
                                 loading="lazy"></div>
                         <h3>Elétricos</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image 9.png" alt="Categoria Hatches" loading="lazy">
+                        <div class="img-wrapper"><img src="../fotos/image_9.png" alt="Categoria Hatches" loading="lazy">
                         </div>
                         <h3>Hatches</h3>
                     </div>
@@ -235,6 +239,8 @@
         </div>
     </footer>
 
+    <script src="../JS/utils.js"></script>
+    <script src="../JS/api.js"></script>
     <script src="../JS/script.js"></script>
     <script src="../JS/cookies.js"></script>
 </body>

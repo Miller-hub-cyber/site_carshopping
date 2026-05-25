@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(winget --version)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --source winget --accept-package-agreements --accept-source-agreements)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); node --version; npm --version)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm install 2>&1)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm audit fix 2>&1 | Select-Object -Last 10)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm uninstall bcrypt; npm install bcryptjs 2>&1 | Select-Object -Last 8)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm audit 2>&1 | Select-Object -First 40)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm install drizzle-orm@latest @fastify/static@latest @fastify/jwt@latest drizzle-kit@latest 2>&1 | Select-Object -Last 10)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm audit 2>&1 | Select-Object -First 30)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; $env:DATABASE_URL=\"postgresql://dummy:dummy@localhost:5432/dummy\"; $env:JWT_SECRET=\"test-secret-for-syntax-check\"; node --input-type=module --eval \"import './src/server.js'\" 2>&1 | Select-Object -First 15)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; $env:DATABASE_URL=\"postgresql://dummy:dummy@localhost:5432/dummy\"; $env:JWT_SECRET=\"test-secret-for-syntax-check\"; node --input-type=module --eval \"import './src/server.js'\" 2>&1 | Select-Object -First 20)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm install pino-pretty 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; Stop-Process -Name \"node\" -ErrorAction SilentlyContinue; npm install --save-dev pino-pretty 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\"; $env:PGPASSWORD = \"car1515\"; psql -U postgres -c \"CREATE DATABASE carshopping;\" 2>&1)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\"; Set-Location d:\\\\site_carshopping\\\\backend; npx drizzle-kit push 2>&1)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\) + \";C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\"; Set-Location d:\\\\site_carshopping\\\\backend; npx drizzle-kit push 2>&1)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location d:\\\\site_carshopping\\\\backend; npm run dev 2>&1)",
+      "PowerShell(Stop-Process -Id \\(Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue\\).OwningProcess -Force -ErrorAction SilentlyContinue; Write-Host \"Processo na porta 3000 encerrado.\")"
+    ]
+  }
+}

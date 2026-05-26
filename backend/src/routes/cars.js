@@ -1,7 +1,42 @@
 import { z } from "zod";
-import { eq, and, gte, lte, ilike, desc, asc, sql } from "drizzle-orm";
+import { eq, and, gte, lte, ilike, desc, asc, sql, inArray } from "drizzle-orm";
+import { writeFile, mkdir } from "fs/promises";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { randomBytes } from "crypto";
+import { v2 as cloudinary } from "cloudinary";
 import { db } from "../db/index.js";
 import { cars, carImages } from "../db/schema.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const UPLOADS_DIR = join(__dirname, "../../uploads");
+const USE_CLOUDINARY = !!process.env.CLOUDINARY_URL;
+
+await mkdir(UPLOADS_DIR, { recursive: true });
+
+/* Configura Cloudinary se a env var estiver definida */
+if (USE_CLOUDINARY) {
+    cloudinary.config(); // lê CLOUDINARY_URL automaticamente
+}
+
+const ALLOWED_EXTS = new Set(["jpg", "jpeg", "png", "webp", "avif"]);
+
+/* Salva imagem localmente ou no Cloudinary */
+async function saveImage(buffer, ext) {
+    if (USE_CLOUDINARY) {
+        const result = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                { folder: "carshopping", resource_type: "image" },
+                (err, res) => err ? reject(err) : resolve(res)
+            ).end(buffer);
+        });
+        return result.secure_url;
+    }
+
+    const filename = `${randomBytes(16).toString("hex")}.${ext}`;
+    await writeFile(join(UPLOADS_DIR, filename), buffer);
+    return `/uploads/${filename}`;
+}
 
 const createCarSchema = z.object({
     brand:        z.string().min(1),
@@ -63,7 +98,18 @@ export default async function carRoutes(app) {
             .where(and(...filters)),
         ]);
 
-        return { data, total, page: Number(page), limit: Number(limit) };
+        /* Busca imagem principal de cada carro */
+        const ids = data.map(c => c.id);
+        let mainImages = [];
+        if (ids.length > 0) {
+            mainImages = await db.select({ carId: carImages.carId, url: carImages.url })
+                .from(carImages)
+                .where(and(eq(carImages.isMain, true), inArray(carImages.carId, ids)));
+        }
+        const imageMap = Object.fromEntries(mainImages.map(i => [i.carId, i.url]));
+        const result = data.map(c => ({ ...c, mainImage: imageMap[c.id] ?? null }));
+
+        return { data: result, total, page: Number(page), limit: Number(limit) };
     });
 
     /* GET /api/cars/:id — detalhe do carro */
@@ -91,6 +137,48 @@ export default async function carRoutes(app) {
             .returning();
 
         return reply.status(201).send(car);
+    });
+
+    /* POST /api/cars/:id/images — upload de imagens (requer autenticação) */
+    app.post("/:id/images", { onRequest: [app.authenticate] }, async (request, reply) => {
+        const carId = Number(request.params.id);
+        if (!carId) return reply.status(400).send({ error: "ID inválido" });
+
+        const [car] = await db.select({ id: cars.id, userId: cars.userId })
+            .from(cars).where(eq(cars.id, carId)).limit(1);
+
+        if (!car) return reply.status(404).send({ error: "Veículo não encontrado" });
+        if (car.userId !== request.user.sub) {
+            return reply.status(403).send({ error: "Não autorizado" });
+        }
+
+        /* Verifica se já existe imagem principal */
+        const [existingMain] = await db.select({ id: carImages.id })
+            .from(carImages)
+            .where(and(eq(carImages.carId, carId), eq(carImages.isMain, true)))
+            .limit(1);
+
+        const saved = [];
+        const parts = request.parts();
+
+        for await (const part of parts) {
+            if (part.type !== "file") { await part.value; continue; }
+
+            const ext = part.filename.split(".").pop().toLowerCase();
+            if (!ALLOWED_EXTS.has(ext)) { await part.toBuffer(); continue; }
+
+            const buffer = await part.toBuffer();
+            const url    = await saveImage(buffer, ext);
+
+            const isMain = saved.length === 0 && !existingMain;
+            const [image] = await db.insert(carImages)
+                .values({ carId, url, isMain })
+                .returning();
+
+            saved.push(image);
+        }
+
+        return reply.status(201).send(saved);
     });
 
     /* PATCH /api/cars/:id/status — encerrar anúncio (requer autenticação) */

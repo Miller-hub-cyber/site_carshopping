@@ -3,6 +3,7 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { db } from "../db/index.js";
 import { users } from "../db/schema.js";
+import { sendEmail } from "../lib/email.js";
 
 const registerSchema = z.object({
     name:     z.string().min(2,  "Nome deve ter ao menos 2 caracteres"),
@@ -75,8 +76,25 @@ export default async function authRoutes(app) {
             return reply.status(400).send({ error: "Email inválido" });
         }
 
-        /* Em produção: enviar email via Resend.
-           Por enquanto confirmamos sem revelar se o email existe. */
+        /* Envia email de recuperação se o usuário existir (sem revelar se existe) */
+        const [user] = await db.select({ id: users.id, name: users.name })
+            .from(users).where(eq(users.email, email)).limit(1);
+
+        if (user) {
+            await sendEmail({
+                to: email,
+                subject: "Recuperação de senha — CarShopping",
+                html: `
+                    <h2>Olá, ${user.name}!</h2>
+                    <p>Recebemos uma solicitação de recuperação de senha para sua conta no CarShopping.</p>
+                    <p>Se não foi você, ignore este email.</p>
+                    <p>Para redefinir sua senha, entre em contato com nosso suporte.</p>
+                    <br>
+                    <p>Equipe CarShopping</p>
+                `,
+            });
+        }
+
         return {
             message: "Se o email estiver cadastrado, você receberá as instruções em breve.",
         };

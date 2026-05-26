@@ -1,12 +1,7 @@
 "use strict";
 
-/**
- * CSApi — cliente HTTP do CarShopping.
- * Centraliza todas as chamadas fetch à API backend.
- * Carregue este script APÓS utils.js e ANTES dos scripts de página.
- */
 window.CSApi = (() => {
-    const BASE = "http://localhost:3000/api";
+    const BASE = window.CS_API_BASE ?? "http://localhost:3000/api";
 
     /* ===== TOKEN JWT ===== */
     const auth = {
@@ -28,7 +23,7 @@ window.CSApi = (() => {
         isLoggedIn: () => !!localStorage.getItem("cs-token"),
     };
 
-    /* ===== FETCH INTERNO ===== */
+    /* ===== FETCH INTERNO (JSON) ===== */
     async function request(method, path, body, requiresAuth = false) {
         const headers = { "Content-Type": "application/json" };
 
@@ -47,9 +42,7 @@ window.CSApi = (() => {
         const json = await res.json().catch(() => ({}));
 
         if (!res.ok) {
-            const msg = typeof json.error === "string"
-                ? json.error
-                : "Erro na requisição";
+            const msg = typeof json.error === "string" ? json.error : "Erro na requisição";
             const err = new Error(msg);
             err.status = res.status;
             err.data   = json;
@@ -92,8 +85,30 @@ window.CSApi = (() => {
             return request("GET", `/cars${qs ? "?" + qs : ""}`);
         },
 
+        async getCarById(id) {
+            return request("GET", `/cars/${id}`);
+        },
+
         async createCar(carData) {
             return request("POST", "/cars", carData, true);
+        },
+
+        async uploadCarImages(carId, files) {
+            const token = auth.getToken();
+            if (!token) throw new Error("Usuário não autenticado");
+
+            const formData = new FormData();
+            files.forEach(file => formData.append("images", file));
+
+            const res = await fetch(`${BASE}/cars/${carId}/images`, {
+                method: "POST",
+                headers: { "Authorization": `Bearer ${token}` },
+                body: formData,
+            });
+
+            const json = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(json.error ?? "Erro ao fazer upload das imagens");
+            return json;
         },
 
         /* --- Contato --- */

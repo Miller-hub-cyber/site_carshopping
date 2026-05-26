@@ -132,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const car = await CSApi.createCar(carData);
 
+                if (selectedFiles.length > 0) {
+                    CSUtils.setButtonLoading(submitBtn, "Enviando imagens...");
+                    await CSApi.uploadCarImages(car.id, selectedFiles);
+                }
+
                 document.getElementById("reference-id").textContent = car.id;
                 successMessage.style.display = "flex";
 

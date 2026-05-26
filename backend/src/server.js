@@ -4,11 +4,15 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import multipart from "@fastify/multipart";
+import staticFiles from "@fastify/static";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/auth.js";
 import carRoutes from "./routes/cars.js";
 import contactRoutes from "./routes/contact.js";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDev = process.env.NODE_ENV !== "production";
 
 const app = Fastify({
@@ -17,11 +21,17 @@ const app = Fastify({
         : true,
 });
 
+/* CORS: em dev aceita tudo; em produção lê CORS_ORIGIN (separado por vírgulas) */
+const corsOrigin = isDev
+    ? true
+    : (process.env.CORS_ORIGIN ?? "")
+        .split(",")
+        .map(s => s.trim())
+        .filter(Boolean);
+
 /* ===== PLUGINS ===== */
 await app.register(cors, {
-    /* Em dev: aceita qualquer origem (inclui file://, Live Server, etc.)
-       Em produção: troque por: origin: ["https://seudominio.com"] */
-    origin: isDev ? true : ["https://seudominio.com"],
+    origin: corsOrigin,
     credentials: true,
 });
 
@@ -31,6 +41,12 @@ await app.register(jwt, {
 });
 
 await app.register(multipart, { limits: { fileSize: 10 * 1024 * 1024 } });
+
+/* Serve imagens enviadas por upload */
+await app.register(staticFiles, {
+    root: join(__dirname, "../uploads"),
+    prefix: "/uploads/",
+});
 
 /* ===== DECORADORES ===== */
 app.decorate("authenticate", async (request, reply) => {

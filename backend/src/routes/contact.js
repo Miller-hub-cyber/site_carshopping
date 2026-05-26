@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { db } from "../db/index.js";
 import { contacts } from "../db/schema.js";
+import { sendEmail } from "../lib/email.js";
 
 const contactSchema = z.object({
     name:    z.string().min(2,  "Nome muito curto"),
@@ -23,7 +24,24 @@ export default async function contactRoutes(app) {
             .values(parsed.data)
             .returning({ id: contacts.id });
 
-        /* Em produção: enviar email de notificação via Resend */
+        const { name, email, subject, message, phone } = parsed.data;
+        const adminEmail = process.env.ADMIN_EMAIL;
+
+        if (adminEmail) {
+            await sendEmail({
+                to: adminEmail,
+                subject: `[CarShopping] Nova mensagem: ${subject ?? "Sem assunto"}`,
+                html: `
+                    <h2>Nova mensagem de contato</h2>
+                    <p><strong>Nome:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    ${phone ? `<p><strong>Telefone:</strong> ${phone}</p>` : ""}
+                    ${subject ? `<p><strong>Assunto:</strong> ${subject}</p>` : ""}
+                    <p><strong>Mensagem:</strong></p>
+                    <p>${message.replace(/\n/g, "<br>")}</p>
+                `,
+            });
+        }
 
         return reply.status(201).send({
             message: "Mensagem enviada com sucesso! Entraremos em contato em breve.",

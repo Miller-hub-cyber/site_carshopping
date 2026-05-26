@@ -1,0 +1,384 @@
+/* ===== PÁGINA DE DETALHE DO VEÍCULO ===== */
+
+.detalhe-section {
+    padding: 120px 0 80px;
+    background: var(--light-bg, #f8f9fa);
+    min-height: 100vh;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted, #666);
+    margin-bottom: 28px;
+}
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb i { font-size: 10px; color: var(--text-muted, #aaa); }
+
+/* Layout principal */
+.detalhe-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+}
+
+/* ===== GALERIA ===== */
+.galeria {
+    background: var(--text-light, #fff);
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.galeria-main {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #1a1a2e;
+    overflow: hidden;
+}
+
+.galeria-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.galeria-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+}
+.galeria-nav:hover { background: rgba(0,0,0,.8); }
+.galeria-nav.prev { left: 12px; }
+.galeria-nav.next { right: 12px; }
+
+.galeria-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+.galeria-thumb {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+.galeria-thumb.active { border-color: var(--primary-blue); }
+.galeria-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Placeholder sem imagem */
+.galeria-placeholder {
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    background: #f0f0f0;
+    font-size: 14px;
+    gap: 12px;
+}
+.galeria-placeholder i { font-size: 3rem; }
+
+/* ===== CARD DE INFORMAÇÕES ===== */
+.info-card {
+    background: var(--text-light, #fff);
+    border-radius: var(--radius-lg, 16px);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 100px;
+}
+
+.car-badge {
+    display: inline-block;
+    background: #e8f4fd;
+    color: var(--primary-blue);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 12px;
+}
+
+.info-card h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.25;
+}
+
+.info-card .car-year-km {
+    font-size: 13px;
+    color: var(--text-muted, #666);
+    margin-bottom: 20px;
+}
+
+.price-destaque {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary-red, #cc1818);
+    margin-bottom: 24px;
+}
+
+/* Especificações rápidas */
+.specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px;
+    background: var(--light-bg, #f8f9fa);
+    border-radius: var(--radius-sm, 8px);
+}
+.spec-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--text-muted, #888);
+}
+.spec-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Botões de ação */
+.btn-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: #25d366;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md, 10px);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+    margin-bottom: 10px;
+}
+.btn-whatsapp:hover {
+    background: #128c7e;
+    transform: translateY(-2px);
+}
+
+.btn-contact-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px;
+    background: none;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    border-radius: var(--radius-md, 10px);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-contact-form:hover {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+/* ===== DESCRIÇÃO ===== */
+.descricao-card {
+    background: var(--text-light, #fff);
+    border-radius: var(--radius-lg, 16px);
+    padding: 28px;
+    margin-top: 24px;
+    box-shadow: var(--shadow-sm);
+}
+.descricao-card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+}
+.descricao-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted, #555);
+    white-space: pre-wrap;
+}
+
+/* ===== FORMULÁRIO DE CONTATO EMBUTIDO ===== */
+.contact-form-card {
+    background: var(--text-light, #fff);
+    border-radius: var(--radius-lg, 16px);
+    padding: 28px;
+    margin-top: 24px;
+    box-shadow: var(--shadow-sm);
+}
+.contact-form-card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+}
+.contact-form-card p {
+    font-size: 13px;
+    color: var(--text-muted, #888);
+    margin-bottom: 20px;
+}
+.contact-form-card .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.contact-form-card .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+.contact-form-card label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.contact-form-card input,
+.contact-form-card textarea {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-color, #e0e0e0);
+    border-radius: var(--radius-sm, 8px);
+    font-size: 14px;
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    background: var(--light-bg, #f8f9fa);
+    transition: border-color 0.2s;
+    outline: none;
+}
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+    border-color: var(--primary-blue);
+    background: var(--text-light, #fff);
+}
+.contact-form-card textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.contact-form-card .btn-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md, 10px);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 4px;
+}
+.contact-form-card .btn-send:hover {
+    background: var(--primary-blue-hover, #1a3050);
+    transform: translateY(-2px);
+}
+
+/* ===== LOADING STATE ===== */
+.detalhe-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 16px;
+    color: var(--text-muted, #888);
+    font-size: 15px;
+}
+.detalhe-loading i { font-size: 2.5rem; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.detalhe-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 16px;
+    color: var(--text-muted, #888);
+    font-size: 15px;
+    text-align: center;
+}
+.detalhe-error i { font-size: 3rem; color: var(--primary-red); opacity: .7; }
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] .detalhe-section { background: #0f172a; }
+[data-theme="dark"] .galeria,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .descricao-card,
+[data-theme="dark"] .contact-form-card { background: #1e293b; box-shadow: none; }
+[data-theme="dark"] .spec-item { background: #0f172a; }
+[data-theme="dark"] .car-badge { background: rgba(35,65,107,.3); }
+[data-theme="dark"] .contact-form-card input,
+[data-theme="dark"] .contact-form-card textarea { background: #0f172a; border-color: var(--border-color); color: var(--text-dark); }
+[data-theme="dark"] .galeria-placeholder { background: #0f172a; }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+    .detalhe-grid {
+        grid-template-columns: 1fr;
+    }
+    .info-card {
+        position: static;
+    }
+}
+@media (max-width: 576px) {
+    .detalhe-section { padding: 100px 0 60px; }
+    .specs-grid { grid-template-columns: 1fr 1fr; }
+    .contact-form-card .form-row { grid-template-columns: 1fr; }
+    .price-destaque { font-size: 26px; }
+}

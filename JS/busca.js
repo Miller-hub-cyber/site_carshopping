@@ -101,9 +101,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return;
             }
 
+            const API_BASE = window.CS_MEDIA_BASE ?? "http://localhost:3000";
+            const FALLBACK_IMG = "../fotos/hb20.png";
+
             cars.forEach(car => {
-                const price = parseFloat(car.price).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-                const km    = Number(car.km).toLocaleString("pt-BR");
+                const price    = parseFloat(car.price).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+                const km       = Number(car.km).toLocaleString("pt-BR");
+                const imgSrc   = car.mainImage ? `${API_BASE}${car.mainImage}` : FALLBACK_IMG;
+                const detalhes = `detalhe.html?id=${car.id}`;
 
                 const card = document.createElement("div");
                 card.className = "car-card list-card";
@@ -115,7 +120,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <button class="favorite-btn" aria-label="Adicionar aos favoritos">
                         <i class="fa-regular fa-heart"></i>
                     </button>
-                    <img src="../fotos/hb20.png" alt="${car.brand} ${car.model}" loading="lazy">
+                    <img src="${imgSrc}" alt="${car.brand} ${car.model}" loading="lazy"
+                         onerror="this.src='${FALLBACK_IMG}'">
                     <div class="car-info">
                         <h3 class="car-title">${car.brand} ${car.model}</h3>
                         <p class="car-price">${price}</p>
@@ -124,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <span><i class="fa-solid fa-gauge"></i> ${km} km</span>
                             <span><i class="fa-solid fa-gas-pump"></i> ${car.fuel}</span>
                         </div>
-                        <button class="btn-details">Ver detalhes <i class="fa-solid fa-arrow-right"></i></button>
+                        <a href="${detalhes}" class="btn-details">Ver detalhes <i class="fa-solid fa-arrow-right"></i></a>
                     </div>`;
                 container.appendChild(card);
             });

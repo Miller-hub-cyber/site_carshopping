@@ -1,0 +1,32 @@
+[build]
+  publish = "."
+
+# Redireciona raiz para a página inicial
+[[redirects]]
+  from = "/"
+  to   = "/HTML/index.html"
+  status = 200
+
+# Segurança — headers básicos para todas as páginas
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+# Cache longo para assets estáticos
+[[headers]]
+  for = "/fotos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/CSS/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/JS/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

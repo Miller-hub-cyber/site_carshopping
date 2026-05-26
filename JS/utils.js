@@ -204,4 +204,56 @@ window.CSUtils = {
             }
         });
     },
+
+    /* ===== HEADER AUTH — mostra usuário logado ou botão de cadastro ===== */
+
+    initAuthHeader() {
+        const container = document.getElementById('header-auth');
+        if (!container || typeof CSApi === 'undefined') return;
+
+        if (CSApi.auth.isLoggedIn()) {
+            const user     = CSApi.auth.getUser();
+            const firstName = user?.name?.split(' ')[0] ?? 'Usuário';
+
+            container.innerHTML = `
+                <div class="user-menu">
+                    <button class="user-menu-btn" id="user-menu-btn"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>${firstName}</span>
+                        <i class="fa-solid fa-chevron-down user-chevron"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" role="menu">
+                        <a href="vender.html" class="dropdown-item" role="menuitem">
+                            <i class="fa-solid fa-plus"></i> Publicar anúncio
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button class="dropdown-item dropdown-logout" id="logout-btn" role="menuitem">
+                            <i class="fa-solid fa-right-from-bracket"></i> Sair
+                        </button>
+                    </div>
+                </div>`;
+
+            const menuBtn  = document.getElementById('user-menu-btn');
+            const dropdown = document.getElementById('user-dropdown');
+
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = dropdown.classList.toggle('active');
+                menuBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            document.addEventListener('click', () => {
+                dropdown.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            });
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                CSApi.auth.logout();
+                window.location.reload();
+            });
+        } else {
+            container.innerHTML = `<a href="cadastro.html" class="btn-primary">Cadastre-se</a>`;
+        }
+    },
 };

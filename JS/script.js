@@ -6,4 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
     CSUtils.initScrollHeader();
     CSUtils.initScrollToTop();
     CSUtils.initDarkMode();
+    CSUtils.initAuthHeader();
 });

@@ -138,14 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 document.getElementById("reference-id").textContent = car.id;
+                form.style.display = "none";
                 successMessage.style.display = "flex";
-
-                setTimeout(() => {
-                    form.reset();
-                    selectedFiles = [];
-                    previewContainer.innerHTML = "";
-                    updateFileInput();
-                }, 2000);
             } catch (err) {
                 CSUtils.showToast(err.message ?? "Erro ao publicar anúncio.", "error");
             } finally {
@@ -159,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             previewContainer.innerHTML = "";
             updateFileInput();
             successMessage.style.display = "none";
+            form.style.display = "";
             form.scrollIntoView({ behavior: "smooth" });
         });
 

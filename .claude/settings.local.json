@@ -31,7 +31,11 @@
       "Bash(Sort-Object)",
       "PowerShell(tree \"d:\\\\site_carshopping\" -L 3 -Exclude node_modules 2>$null)",
       "PowerShell(head -100)",
-      "Bash(grep -v \"^\\\\.\\\\.\\\\/$|^\\\\.\\\\/$\")"
+      "Bash(grep -v \"^\\\\.\\\\.\\\\/$|^\\\\.\\\\/$\")",
+      "Bash(npm audit *)",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); try{ const j=JSON.parse\\(d\\); const vulns=j.vulnerabilities||{}; Object.entries\\(vulns\\).forEach\\(\\([k,v]\\)=>console.log\\(k,v.severity,v.via?.map?.\\(x=>typeof x==='string'?x:x.title\\).join\\(','\\)\\)\\); }catch\\(e\\){console.log\\(d.slice\\(0,500\\)\\);}\")",
+      "Bash(node --input-type=module --eval ' *)",
+      "Bash(npm list *)"
     ]
   }
 }

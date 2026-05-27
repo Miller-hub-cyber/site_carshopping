@@ -6,18 +6,11 @@ import { fileURLToPath } from "url";
 import { randomBytes } from "crypto";
 import { v2 as cloudinary } from "cloudinary";
 import { db } from "../db/index.js";
-import { cars, carImages } from "../db/schema.js";
+import { cars, carImages, users } from "../db/schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const UPLOADS_DIR = join(__dirname, "../../uploads");
 const USE_CLOUDINARY = !!process.env.CLOUDINARY_URL;
-
-await mkdir(UPLOADS_DIR, { recursive: true });
-
-/* Configura Cloudinary se a env var estiver definida */
-if (USE_CLOUDINARY) {
-    cloudinary.config(); // lê CLOUDINARY_URL automaticamente
-}
 
 const ALLOWED_EXTS = new Set(["jpg", "jpeg", "png", "webp", "avif"]);
 
@@ -51,13 +44,24 @@ const createCarSchema = z.object({
 
 export default async function carRoutes(app) {
 
+    /* Cria diretório de uploads dentro do plugin (falha visível no startup) */
+    await mkdir(UPLOADS_DIR, { recursive: true });
+
+    /* Configura Cloudinary se a env var estiver definida */
+    if (USE_CLOUDINARY) {
+        cloudinary.config();
+    }
+
     /* GET /api/cars — listagem com filtros */
     app.get("/", async (request) => {
         const {
-            brand, year, maxKm, minPrice, maxPrice,
+            brand, year, maxKm, minPrice, maxPrice, fuel,
             search, sort = "recentes",
-            page = 1, limit = 12,
         } = request.query;
+
+        /* Sanitiza paginação — sem teto, limite máximo de 50 */
+        const page  = Math.max(1, Number(request.query.page)  || 1);
+        const limit = Math.min(50, Math.max(1, Number(request.query.limit) || 12));
 
         const filters = [eq(cars.status, "active")];
 
@@ -67,13 +71,14 @@ export default async function carRoutes(app) {
         if (minPrice) filters.push(gte(cars.price, String(minPrice)));
         if (maxPrice) filters.push(lte(cars.price, String(maxPrice)));
         if (search)   filters.push(ilike(cars.model, `%${search}%`));
+        if (fuel && fuel !== "todos") filters.push(eq(cars.fuel, fuel));
 
         const orderBy =
             sort === "menor-preco" ? asc(cars.price) :
             sort === "maior-preco" ? desc(cars.price) :
             desc(cars.createdAt);
 
-        const offset = (Number(page) - 1) * Number(limit);
+        const offset = (page - 1) * limit;
 
         const [data, [{ total }]] = await Promise.all([
             db.select({
@@ -90,7 +95,7 @@ export default async function carRoutes(app) {
             .from(cars)
             .where(and(...filters))
             .orderBy(orderBy)
-            .limit(Number(limit))
+            .limit(limit)
             .offset(offset),
 
             db.select({ total: sql`count(*)`.mapWith(Number) })
@@ -109,15 +114,36 @@ export default async function carRoutes(app) {
         const imageMap = Object.fromEntries(mainImages.map(i => [i.carId, i.url]));
         const result = data.map(c => ({ ...c, mainImage: imageMap[c.id] ?? null }));
 
-        return { data: result, total, page: Number(page), limit: Number(limit) };
+        return { data: result, total, page, limit };
     });
 
-    /* GET /api/cars/:id — detalhe do carro */
+    /* GET /api/cars/:id — detalhe do carro (inclui telefone do vendedor) */
     app.get("/:id", async (request, reply) => {
         const id = Number(request.params.id);
         if (!id) return reply.status(400).send({ error: "ID inválido" });
 
-        const [car] = await db.select().from(cars).where(eq(cars.id, id)).limit(1);
+        const [car] = await db
+            .select({
+                id:           cars.id,
+                userId:       cars.userId,
+                brand:        cars.brand,
+                model:        cars.model,
+                year:         cars.year,
+                km:           cars.km,
+                fuel:         cars.fuel,
+                transmission: cars.transmission,
+                price:        cars.price,
+                description:  cars.description,
+                status:       cars.status,
+                createdAt:    cars.createdAt,
+                sellerPhone:  users.phone,
+                sellerName:   users.name,
+            })
+            .from(cars)
+            .leftJoin(users, eq(cars.userId, users.id))
+            .where(eq(cars.id, id))
+            .limit(1);
+
         if (!car) return reply.status(404).send({ error: "Veículo não encontrado" });
 
         const images = await db.select().from(carImages).where(eq(carImages.carId, id));

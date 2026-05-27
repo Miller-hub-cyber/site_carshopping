@@ -71,12 +71,14 @@ export default async function authRoutes(app) {
 
     /* POST /api/auth/recover */
     app.post("/recover", async (request, reply) => {
-        const { email } = request.body ?? {};
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const recoverSchema = z.object({ email: z.string().email("Email inválido") });
+        const parsed = recoverSchema.safeParse(request.body ?? {});
+        if (!parsed.success) {
             return reply.status(400).send({ error: "Email inválido" });
         }
+        const { email } = parsed.data;
 
-        /* Envia email de recuperação se o usuário existir (sem revelar se existe) */
+        /* Consulta sem revelar se o email existe (prevenção de user enumeration) */
         const [user] = await db.select({ id: users.id, name: users.name })
             .from(users).where(eq(users.email, email)).limit(1);
 

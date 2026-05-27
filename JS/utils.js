@@ -205,6 +205,16 @@ window.CSUtils = {
         });
     },
 
+    /* ===== ESCAPE HTML INTERNO ===== */
+
+    escapeHtml(str) {
+        return String(str ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    },
+
     /* ===== HEADER AUTH — mostra usuário logado ou botão de cadastro ===== */
 
     initAuthHeader() {
@@ -212,8 +222,8 @@ window.CSUtils = {
         if (!container || typeof CSApi === 'undefined') return;
 
         if (CSApi.auth.isLoggedIn()) {
-            const user     = CSApi.auth.getUser();
-            const firstName = user?.name?.split(' ')[0] ?? 'Usuário';
+            const user      = CSApi.auth.getUser();
+            const firstName = CSUtils.escapeHtml(user?.name?.split(' ')[0] ?? 'Usuário');
 
             container.innerHTML = `
                 <div class="user-menu">

@@ -28,17 +28,23 @@ export default async function contactRoutes(app) {
         const adminEmail = process.env.ADMIN_EMAIL;
 
         if (adminEmail) {
+            const esc = (s) => String(s ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+
             await sendEmail({
                 to: adminEmail,
                 subject: `[CarShopping] Nova mensagem: ${subject ?? "Sem assunto"}`,
                 html: `
                     <h2>Nova mensagem de contato</h2>
-                    <p><strong>Nome:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    ${phone ? `<p><strong>Telefone:</strong> ${phone}</p>` : ""}
-                    ${subject ? `<p><strong>Assunto:</strong> ${subject}</p>` : ""}
+                    <p><strong>Nome:</strong> ${esc(name)}</p>
+                    <p><strong>Email:</strong> ${esc(email)}</p>
+                    ${phone ? `<p><strong>Telefone:</strong> ${esc(phone)}</p>` : ""}
+                    ${subject ? `<p><strong>Assunto:</strong> ${esc(subject)}</p>` : ""}
                     <p><strong>Mensagem:</strong></p>
-                    <p>${message.replace(/\n/g, "<br>")}</p>
+                    <p>${esc(message).replace(/\n/g, "<br>")}</p>
                 `,
             });
         }

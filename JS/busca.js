@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 maxKm:    document.getElementById("filter-km").value,
                 minPrice: document.getElementById("price-min").value || undefined,
                 maxPrice: document.getElementById("price-max").value || undefined,
+                fuel:     document.getElementById("filter-fuel").value,
                 search:   textSearch ? textSearch.value : undefined,
                 sort:     currentSort,
             };
@@ -108,7 +109,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const price    = parseFloat(car.price).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
                 const km       = Number(car.km).toLocaleString("pt-BR");
                 const imgSrc   = car.mainImage ? `${API_BASE}${car.mainImage}` : FALLBACK_IMG;
-                const detalhes = `detalhe.html?id=${car.id}`;
+                const detalhes = `detalhe.html?id=${encodeURIComponent(car.id)}`;
+
+                /* Sanitizar campos que vêm do banco */
+                const brand = escHtml(car.brand);
+                const model = escHtml(car.model);
+                const fuel  = escHtml(car.fuel);
 
                 const card = document.createElement("div");
                 card.className = "car-card list-card";
@@ -120,15 +126,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <button class="favorite-btn" aria-label="Adicionar aos favoritos">
                         <i class="fa-regular fa-heart"></i>
                     </button>
-                    <img src="${imgSrc}" alt="${car.brand} ${car.model}" loading="lazy"
+                    <img src="${imgSrc}" alt="${brand} ${model}" loading="lazy"
                          onerror="this.src='${FALLBACK_IMG}'">
                     <div class="car-info">
-                        <h3 class="car-title">${car.brand} ${car.model}</h3>
+                        <h3 class="car-title">${brand} ${model}</h3>
                         <p class="car-price">${price}</p>
                         <div class="car-details">
                             <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
                             <span><i class="fa-solid fa-gauge"></i> ${km} km</span>
-                            <span><i class="fa-solid fa-gas-pump"></i> ${car.fuel}</span>
+                            <span><i class="fa-solid fa-gas-pump"></i> ${fuel}</span>
                         </div>
                         <a href="${detalhes}" class="btn-details">Ver detalhes <i class="fa-solid fa-arrow-right"></i></a>
                     </div>`;
@@ -163,77 +169,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     /* ===== MODO ESTÁTICO — fallback quando API está offline ===== */
-    function initStaticMode(container, resultCount, applyBtn, clearBtn, sortSelect, textSearch) {
-        let carCards = Array.from(document.querySelectorAll(".list-card:not(.skeleton-card)"));
+    function initStaticMode(container, resultCount) {
+        container.querySelectorAll(".skeleton-card").forEach(s => s.remove());
+        container.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);">
+                <i class="fa-solid fa-plug-circle-xmark" style="font-size:3rem;opacity:.3;margin-bottom:16px;display:block;"></i>
+                <p style="font-size:1.1rem;"><strong>Backend offline.</strong></p>
+                <p style="margin-top:8px;">Inicie o servidor para visualizar os veículos disponíveis.</p>
+            </div>`;
+        if (resultCount) resultCount.textContent = "0";
+    }
 
-        function filterCars() {
-            const brand     = document.getElementById("filter-brand").value;
-            const year      = document.getElementById("filter-year").value;
-            const maxKm     = parseInt(document.getElementById("filter-km").value);
-            const minPrice  = parseInt(document.getElementById("price-min").value) || 0;
-            const maxPrice  = parseInt(document.getElementById("price-max").value) || Infinity;
-            const searchTxt = textSearch ? textSearch.value.toLowerCase() : "";
-
-            let count = 0;
-            carCards.forEach(card => {
-                const matchBrand = brand === "todas" || card.dataset.brand === brand;
-                const matchYear  = year  === "todos" || card.dataset.year  === year;
-                const matchKm    = parseInt(card.dataset.km)    <= maxKm;
-                const matchPrice = parseInt(card.dataset.price) >= minPrice &&
-                                   parseInt(card.dataset.price) <= maxPrice;
-                const title      = card.querySelector(".car-title")?.textContent.toLowerCase() ?? "";
-                const matchText  = title.includes(searchTxt);
-
-                const show = matchBrand && matchYear && matchKm && matchPrice && matchText;
-                card.style.display = show ? "flex" : "none";
-                if (show) count++;
-            });
-
-            if (resultCount) resultCount.textContent = count;
-
-            if (window.innerWidth <= 768) {
-                const sidebar = document.getElementById("sidebar-filters");
-                if (sidebar) { sidebar.classList.remove("active"); document.body.style.overflow = ""; }
-            }
-        }
-
-        function sortCars() {
-            const val     = sortSelect.value;
-            const visible = carCards.filter(c => c.style.display !== "none");
-            const hidden  = carCards.filter(c => c.style.display === "none");
-
-            visible.sort((a, b) => {
-                const pA = parseInt(a.dataset.price), pB = parseInt(b.dataset.price);
-                const yA = parseInt(a.dataset.year),  yB = parseInt(b.dataset.year);
-                if (val === "menor-preco") return pA - pB;
-                if (val === "maior-preco") return pB - pA;
-                return yB - yA;
-            });
-
-            container.innerHTML = "";
-            [...visible, ...hidden].forEach(c => container.appendChild(c));
-        }
-
-        if (applyBtn)  applyBtn.addEventListener("click", filterCars);
-        if (sortSelect) sortSelect.addEventListener("change", sortCars);
-        if (textSearch) textSearch.addEventListener("input", CSUtils.debounce(filterCars, 280));
-
-        if (clearBtn) {
-            clearBtn.addEventListener("click", () => {
-                document.getElementById("filter-brand").value = "todas";
-                document.getElementById("filter-model").value = "";
-                document.getElementById("price-min").value    = "";
-                document.getElementById("price-max").value    = "";
-                document.getElementById("filter-year").value  = "todos";
-                document.getElementById("filter-km").value    = "100000";
-                document.getElementById("km-value").textContent = "Até 100.000 km";
-                document.getElementById("filter-fuel").value  = "todos";
-                if (textSearch) textSearch.value = "";
-                filterCars();
-            });
-        }
-
-        initSkeletonLoading();
+    /* ===== ESCAPE HTML — previne XSS em campos do banco ===== */
+    function escHtml(str) {
+        return String(str ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
     }
 
     /* ===== SKELETON LOADING ===== */

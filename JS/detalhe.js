@@ -36,12 +36,24 @@ function renderDetalhe(container, car) {
     const images   = car.images ?? [];
     const MEDIA    = window.CS_MEDIA_BASE ?? "http://localhost:3000";
 
+    /* Sanitizar todos os campos de texto vindos do banco */
+    const brand    = escapeHtml(car.brand);
+    const model    = escapeHtml(car.model);
+    const fuel     = escapeHtml(car.fuel);
+    const transm   = escapeHtml(car.transmission);
+    const year     = escapeHtml(String(car.year));
+    const desc     = car.description ? escapeHtml(car.description) : "";
+
     const PLACEHOLDER_IMG = "../fotos/hb20.png";
+
+    /* Número do vendedor (dígitos apenas, garante segurança no href) */
+    const rawPhone = car.sellerPhone ? car.sellerPhone.replace(/\D/g, "") : "";
+    const waPhone  = rawPhone ? (rawPhone.startsWith("55") ? rawPhone : `55${rawPhone}`) : "5511999999999";
 
     /* HTML da galeria */
     const galeriaHTML = images.length > 0 ? `
         <div class="galeria-main">
-            <img id="galeria-img" src="${MEDIA}${images[0].url}" alt="${car.brand} ${car.model}">
+            <img id="galeria-img" src="${MEDIA}${escapeHtml(images[0].url)}" alt="${brand} ${model}">
             ${images.length > 1 ? `
             <button class="galeria-nav prev" id="gal-prev" aria-label="Imagem anterior">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -54,7 +66,7 @@ function renderDetalhe(container, car) {
         <div class="galeria-thumbs" id="galeria-thumbs">
             ${images.map((img, i) => `
                 <div class="galeria-thumb ${i === 0 ? "active" : ""}" data-index="${i}">
-                    <img src="${MEDIA}${img.url}" alt="Foto ${i + 1}" loading="lazy">
+                    <img src="${MEDIA}${escapeHtml(img.url)}" alt="Foto ${i + 1}" loading="lazy">
                 </div>
             `).join("")}
         </div>` : ""}
@@ -69,7 +81,7 @@ function renderDetalhe(container, car) {
         <div class="breadcrumb">
             <a href="busca.html"><i class="fa-solid fa-arrow-left"></i> Voltar à busca</a>
             <i class="fa-solid fa-chevron-right"></i>
-            <span>${car.brand} ${car.model}</span>
+            <span>${brand} ${model}</span>
         </div>
 
         <div class="detalhe-grid">
@@ -77,10 +89,10 @@ function renderDetalhe(container, car) {
             <div>
                 <div class="galeria">${galeriaHTML}</div>
 
-                ${car.description ? `
+                ${desc ? `
                 <div class="descricao-card">
                     <h2>Descrição</h2>
-                    <p>${escapeHtml(car.description)}</p>
+                    <p>${desc}</p>
                 </div>` : ""}
 
                 <div class="contact-form-card" id="contact-section">
@@ -103,7 +115,7 @@ function renderDetalhe(container, car) {
                         </div>
                         <div class="form-group">
                             <label for="c-message">Mensagem</label>
-                            <textarea id="c-message" placeholder="Tenho interesse neste veículo...">${car.brand} ${car.model} ${car.year} — Tenho interesse neste veículo. Poderia me passar mais informações?</textarea>
+                            <textarea id="c-message" placeholder="Tenho interesse neste veículo..."></textarea>
                         </div>
                         <button type="submit" class="btn-send" id="contact-submit">
                             <i class="fa-solid fa-paper-plane"></i> Enviar mensagem
@@ -115,15 +127,15 @@ function renderDetalhe(container, car) {
             <!-- Coluna direita -->
             <div>
                 <div class="info-card">
-                    <span class="car-badge">${car.fuel}</span>
-                    <h1>${car.brand} ${car.model}</h1>
-                    <p class="car-year-km">${car.year} &bull; ${km} km &bull; ${car.transmission}</p>
+                    <span class="car-badge">${fuel}</span>
+                    <h1>${brand} ${model}</h1>
+                    <p class="car-year-km">${year} &bull; ${km} km &bull; ${transm}</p>
                     <p class="price-destaque">${price}</p>
 
                     <div class="specs-grid">
                         <div class="spec-item">
                             <span class="spec-label">Ano</span>
-                            <span class="spec-value">${car.year}</span>
+                            <span class="spec-value">${year}</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Quilometragem</span>
@@ -131,15 +143,15 @@ function renderDetalhe(container, car) {
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Combustível</span>
-                            <span class="spec-value">${car.fuel}</span>
+                            <span class="spec-value">${fuel}</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Câmbio</span>
-                            <span class="spec-value">${car.transmission}</span>
+                            <span class="spec-value">${transm}</span>
                         </div>
                     </div>
 
-                    <a href="https://wa.me/5511999999999?text=${encodeURIComponent(`Olá! Tenho interesse no ${car.brand} ${car.model} ${car.year} por ${price}. Poderia me passar mais informações?`)}"
+                    <a href="https://wa.me/${waPhone}?text=${encodeURIComponent(`Olá! Tenho interesse no ${car.brand} ${car.model} ${car.year} por ${price}. Poderia me passar mais informações?`)}"
                        class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-whatsapp"></i> Falar pelo WhatsApp
                     </a>
@@ -152,8 +164,20 @@ function renderDetalhe(container, car) {
         </div>
     `;
 
-    /* Atualiza título da página */
+    /* Preenche textarea via DOM (seguro — sem innerHTML) */
+    const msgArea = document.getElementById("c-message");
+    if (msgArea) {
+        msgArea.value = `${car.brand} ${car.model} ${car.year} — Tenho interesse neste veículo. Poderia me passar mais informações?`;
+    }
+
+    /* Atualiza título e meta description */
     document.title = `${car.brand} ${car.model} ${car.year} — CarShopping`;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute("content",
+            `${car.brand} ${car.model} ${car.year} por ${price}. ${car.fuel}, ${km} km. Compre no CarShopping.`
+        );
+    }
 
     /* Galeria interativa */
     if (images.length > 1) {

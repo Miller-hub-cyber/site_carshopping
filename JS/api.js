@@ -10,8 +10,12 @@ window.CSApi = (() => {
         removeToken: () => localStorage.removeItem("cs-token"),
 
         getUser: () => {
-            const raw = localStorage.getItem("cs-user");
-            return raw ? JSON.parse(raw) : null;
+            try {
+                const raw = localStorage.getItem("cs-user");
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
         },
         setUser:    (u) => localStorage.setItem("cs-user", JSON.stringify(u)),
         removeUser: () => localStorage.removeItem("cs-user"),

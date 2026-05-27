@@ -1,7 +1,10 @@
 import {
-    pgTable, serial, varchar, text, integer,
-    timestamp, boolean, numeric,
+    pgTable, pgEnum, serial, varchar, text, integer,
+    timestamp, boolean, numeric, index,
 } from "drizzle-orm/pg-core";
+
+/* ===== ENUM: STATUS DO ANÚNCIO ===== */
+export const carStatusEnum = pgEnum("car_status", ["active", "sold", "inactive"]);
 
 /* ===== USUÁRIOS ===== */
 export const users = pgTable("users", {
@@ -25,17 +28,27 @@ export const cars = pgTable("cars", {
     transmission: varchar("transmission", { length: 50 }).notNull(),
     price:        numeric("price",        { precision: 12, scale: 2 }).notNull(),
     description:  text("description"),
-    status:       varchar("status",       { length: 20 }).default("active").notNull(),
+    status:       carStatusEnum("status").default("active").notNull(),
     createdAt:    timestamp("created_at").defaultNow(),
-});
+}, (t) => [
+    index("cars_status_idx").on(t.status),
+    index("cars_brand_idx").on(t.brand),
+    index("cars_created_at_idx").on(t.createdAt),
+    index("cars_price_idx").on(t.price),
+    index("cars_user_id_idx").on(t.userId),
+]);
 
 /* ===== IMAGENS DOS CARROS ===== */
 export const carImages = pgTable("car_images", {
-    id:     serial("id").primaryKey(),
-    carId:  integer("car_id").references(() => cars.id, { onDelete: "cascade" }),
-    url:    varchar("url",    { length: 500 }).notNull(),
-    isMain: boolean("is_main").default(false),
-});
+    id:        serial("id").primaryKey(),
+    carId:     integer("car_id").references(() => cars.id, { onDelete: "cascade" }),
+    url:       varchar("url",    { length: 500 }).notNull(),
+    isMain:    boolean("is_main").default(false),
+    createdAt: timestamp("created_at").defaultNow(),
+}, (t) => [
+    index("car_images_car_id_idx").on(t.carId),
+    index("car_images_is_main_idx").on(t.isMain),
+]);
 
 /* ===== MENSAGENS DE CONTATO ===== */
 export const contacts = pgTable("contacts", {

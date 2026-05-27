@@ -5,6 +5,7 @@ import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import multipart from "@fastify/multipart";
 import staticFiles from "@fastify/static";
+import compress from "@fastify/compress";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -14,6 +15,12 @@ import contactRoutes from "./routes/contact.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDev = process.env.NODE_ENV !== "production";
+
+/* JWT_SECRET obrigatório em produção */
+if (!isDev && !process.env.JWT_SECRET) {
+    console.error("FATAL: JWT_SECRET não definido. Configure a variável de ambiente antes de iniciar em produção.");
+    process.exit(1);
+}
 
 const app = Fastify({
     logger: isDev
@@ -30,6 +37,22 @@ const corsOrigin = isDev
         .filter(Boolean);
 
 /* ===== PLUGINS ===== */
+await app.register(compress, { global: true });
+
+/* Rate limiting — requer: npm install @fastify/rate-limit */
+try {
+    const { default: rateLimit } = await import("@fastify/rate-limit");
+    await app.register(rateLimit, {
+        global:       true,
+        max:          100,
+        timeWindow:   "1 minute",
+        keyGenerator: (req) => req.ip,
+        errorResponseBuilder: () => ({ error: "Muitas requisições. Tente novamente em breve." }),
+    });
+} catch {
+    console.warn("[CarShopping] @fastify/rate-limit não encontrado. Execute: npm install @fastify/rate-limit");
+}
+
 await app.register(cors, {
     origin: corsOrigin,
     credentials: true,

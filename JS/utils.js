@@ -184,10 +184,9 @@ window.CSUtils = {
             }
         }
 
-        /* Carrega preferência salva ou detecta preferência do sistema */
-        const saved  = localStorage.getItem(STORAGE_KEY);
-        const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        applyTheme(saved || prefers);
+        /* Carrega preferência salva; padrão é sempre modo claro */
+        const saved = localStorage.getItem(STORAGE_KEY);
+        applyTheme(saved || 'light');
 
         /* Toggle ao clicar */
         if (btn) {

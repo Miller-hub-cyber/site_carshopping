@@ -21,7 +21,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
 
     <!-- Ícones e Estilos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/servicos.css">
@@ -34,7 +35,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="../HTML/index.html" class="logo">
-                <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+                <picture><source srcset="../fotos/logo.webp" type="image/webp"><img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping"></picture>
             </a>
 
             <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
@@ -75,7 +76,7 @@
                 </div>
                 <div class="hero-image-placeholder">
                     <!-- Usando a mesma imagem de referência das outras páginas para manter o padrão -->
-                    <img src="../fotos/Tela_principal.png" alt="Manutenção Automotiva">
+                    <picture><source srcset="../fotos/Tela_principal.webp" type="image/webp"><img src="../fotos/Tela_principal.png" alt="Manutenção Automotiva" width="1440" height="771" loading="lazy"></picture>
                 </div>
             </div>
         </section>
@@ -202,11 +203,11 @@
                     <p>Contato: <span>11 99999-9999</span></p>
                 </div>
                 <div class="footer-logo">
-                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                    <picture><source srcset="../fotos/unama.webp" type="image/webp"><img src="../fotos/unama.png" alt="Logo Unama" width="97" height="97" loading="lazy"></picture>
                 </div>
                 <div class="app-links">
-                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Google Play"></a>
-                    <a href="#"><img src="../fotos/AppStore.png" alt="App Store"></a>
+                    <a href="#"><picture><source srcset="../fotos/GooglePlay.webp" type="image/webp"><img src="../fotos/GooglePlay.png" alt="Google Play" width="135" height="40" loading="lazy"></picture></a>
+                    <a href="#"><picture><source srcset="../fotos/AppStore.webp" type="image/webp"><img src="../fotos/AppStore.png" alt="App Store" width="135" height="40" loading="lazy"></picture></a>
                 </div>
             </div>
 

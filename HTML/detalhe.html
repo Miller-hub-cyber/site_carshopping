@@ -14,7 +14,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
 
     <!-- Ícones e Estilos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/detalhe.css">
@@ -28,7 +29,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="../HTML/index.html" class="logo">
-                <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+                <picture><source srcset="../fotos/logo.webp" type="image/webp"><img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping"></picture>
             </a>
 
             <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
@@ -74,12 +75,12 @@
                     <p>Contato: <span>11 99999-9999</span></p>
                 </div>
                 <div class="footer-logo">
-                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                    <picture><source srcset="../fotos/unama.webp" type="image/webp"><img src="../fotos/unama.png" alt="Logo Unama" width="97" height="97" loading="lazy"></picture>
                 </div>
                 <div class="app-links">
-                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Disponível no Play Store" loading="lazy"></a>
-                    <a href="#"><img src="../fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
-                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery" loading="lazy"></a>
+                    <a href="#"><picture><source srcset="../fotos/GooglePlay.webp" type="image/webp"><img src="../fotos/GooglePlay.png" alt="Disponível no Play Store" width="135" height="40" loading="lazy"></picture></a>
+                    <a href="#"><picture><source srcset="../fotos/AppStore.webp" type="image/webp"><img src="../fotos/AppStore.png" alt="Disponível na App Store" width="135" height="40" loading="lazy"></picture></a>
+                    <a href="#"><picture><source srcset="../fotos/HuaweiAppGallery.webp" type="image/webp"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery" width="134" height="40" loading="lazy"></picture></a>
                 </div>
             </div>
             <div class="footer-bottom">

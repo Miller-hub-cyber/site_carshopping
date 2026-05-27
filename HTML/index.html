@@ -20,8 +20,12 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
 
-    <!-- Ícones e Estilos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preload hero background (LCP) -->
+    <link rel="preload" href="../fotos/Tela_principal.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <!-- Font Awesome assíncrono (não bloqueia renderização) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="../CSS/tokens.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="icon" href="../fotos/logo.ico" type="image/x-icon">
@@ -34,7 +38,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="../HTML/index.html" class="logo">
-            <img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping">
+            <picture><source srcset="../fotos/logo.webp" type="image/webp"><img src="../fotos/logo.png" width="150" height="38" alt="Logotipo CarShopping"></picture>
         </a>
 
         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu mobile">
@@ -82,7 +86,7 @@
                     <div class="car-card large-card">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/hb20.png" alt="Carros SUV em destaque" loading="lazy">
+                        <picture><source srcset="../fotos/hb20.webp" type="image/webp"><img src="../fotos/hb20.png" alt="Carros SUV em destaque" width="555" height="654" loading="lazy"></picture>
                         <div class="car-info">
                             <h3>Honda HB20</h3>
                             <p class="car-price">R$ 86.000</p>
@@ -96,7 +100,7 @@
                     <div class="car-card wide-card">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/image_2.png" alt="Carros Brancos enfileirados" loading="lazy">
+                        <picture><source srcset="../fotos/image_2.webp" type="image/webp"><img src="../fotos/image_2.png" alt="Carros Brancos enfileirados" width="609" height="281" loading="lazy"></picture>
                         <div class="car-info">
                             <h3>Carros da FIAT</h3>
                             <p class="car-price">R$ 69.990</p>
@@ -110,7 +114,7 @@
                     <div class="car-card small-card">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/onix.png" alt="Interior detalhado do carro" loading="lazy">
+                        <picture><source srcset="../fotos/onix.webp" type="image/webp"><img src="../fotos/onix.png" alt="Interior detalhado do carro" width="821" height="629" loading="lazy"></picture>
                         <div class="car-info">
                             <h3>Chevrolet Onix</h3>
                             <p class="car-price">R$ 101.790</p>
@@ -124,7 +128,7 @@
                     <div class="car-card small-card">
                         <button class="favorite-btn" aria-label="Adicionar aos favoritos"><i
                                 class="fa-regular fa-heart"></i></button>
-                        <img src="../fotos/tracker.png" alt="Frente do Carro Esportivo" loading="lazy">
+                        <picture><source srcset="../fotos/tracker.webp" type="image/webp"><img src="../fotos/tracker.png" alt="Frente do Carro Esportivo" width="835" height="629" loading="lazy"></picture>
                         <div class="car-info">
                             <h3>Chevrolet Tracker</h3>
                             <p class="car-price">R$ 90.000</p>
@@ -145,18 +149,18 @@
                 <h2>EMPRESAS PARCEIRAS</h2>
                 <div class="partners-content">
                     <div class="logos-grid">
-                        <a href="#"><img src="../fotos/byd_logo.png" alt="Logo BYD" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/BMW_logo.png" alt="Logo BMW" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/renault.png" alt="Logo RENAULT" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/ferrari.png" alt="Logo FERRARI" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/hyudai.png" alt="Logo HYUNDAI" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/fiat.png" alt="Logo FIAT" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/volksvagem.png" alt="Logo VW" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/toyta.png" alt="Logo TOYOTA" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/jeep.png" alt="Logo JEEP" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/ford.png" alt="Logo FORD" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/audi.png" alt="Logo AUDI" loading="lazy"></a>
-                        <a href="#"><img src="../fotos/honda_logo.png" alt="Logo HONDA" loading="lazy"></a>
+                        <a href="#"><picture><source srcset="../fotos/byd_logo.webp" type="image/webp"><img src="../fotos/byd_logo.png" alt="Logo BYD" width="156" height="107" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/BMW_logo.webp" type="image/webp"><img src="../fotos/BMW_logo.png" alt="Logo BMW" width="150" height="133" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/renault.webp" type="image/webp"><img src="../fotos/renault.png" alt="Logo RENAULT" width="133" height="116" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/ferrari.webp" type="image/webp"><img src="../fotos/ferrari.png" alt="Logo FERRARI" width="110" height="123" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/hyudai.webp" type="image/webp"><img src="../fotos/hyudai.png" alt="Logo HYUNDAI" width="160" height="90" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/fiat.webp" type="image/webp"><img src="../fotos/fiat.png" alt="Logo FIAT" width="144" height="124" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/volksvagem.webp" type="image/webp"><img src="../fotos/volksvagem.png" alt="Logo VW" width="126" height="125" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/toyta.webp" type="image/webp"><img src="../fotos/toyta.png" alt="Logo TOYOTA" width="141" height="106" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/jeep.webp" type="image/webp"><img src="../fotos/jeep.png" alt="Logo JEEP" width="156" height="87" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/ford.webp" type="image/webp"><img src="../fotos/ford.png" alt="Logo FORD" width="201" height="74" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/audi.webp" type="image/webp"><img src="../fotos/audi.png" alt="Logo AUDI" width="151" height="60" loading="lazy"></picture></a>
+                        <a href="#"><picture><source srcset="../fotos/honda_logo.webp" type="image/webp"><img src="../fotos/honda_logo.png" alt="Logo HONDA" width="137" height="101" loading="lazy"></picture></a>
                     </div>
 
                     <aside class="testimonial-box">
@@ -176,27 +180,26 @@
 
                 <div class="category-grid">
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image_5.png" alt="Categoria SUV" loading="lazy">
+                        <div class="img-wrapper"><picture><source srcset="../fotos/image_5.webp" type="image/webp"><img src="../fotos/image_5.png" alt="Categoria SUV" width="230" height="230" loading="lazy"></picture>
                         </div>
                         <h3>SUVs</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image_6.png" alt="Categoria Sedan" loading="lazy">
+                        <div class="img-wrapper"><picture><source srcset="../fotos/image_6.webp" type="image/webp"><img src="../fotos/image_6.png" alt="Categoria Sedan" width="230" height="230" loading="lazy"></picture>
                         </div>
                         <h3>Sedans</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image_7.png" alt="Categoria Picape" loading="lazy">
+                        <div class="img-wrapper"><picture><source srcset="../fotos/image_7.webp" type="image/webp"><img src="../fotos/image_7.png" alt="Categoria Picape" width="230" height="230" loading="lazy"></picture>
                         </div>
                         <h3>Picapes</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image_8.png" alt="Categoria Elétricos"
-                                loading="lazy"></div>
+                        <div class="img-wrapper"><picture><source srcset="../fotos/image_8.webp" type="image/webp"><img src="../fotos/image_8.png" alt="Categoria Elétricos" width="215" height="230" loading="lazy"></picture></div>
                         <h3>Elétricos</h3>
                     </div>
                     <div class="category-card">
-                        <div class="img-wrapper"><img src="../fotos/image_9.png" alt="Categoria Hatches" loading="lazy">
+                        <div class="img-wrapper"><picture><source srcset="../fotos/image_9.webp" type="image/webp"><img src="../fotos/image_9.png" alt="Categoria Hatches" width="230" height="230" loading="lazy"></picture>
                         </div>
                         <h3>Hatches</h3>
                     </div>
@@ -213,13 +216,12 @@
                     <p>Contato: <span>11 99999-9999</span></p>
                 </div>
                 <div class="footer-logo">
-                    <img src="../fotos/unama.png" alt="Logo Unama" loading="lazy">
+                    <picture><source srcset="../fotos/unama.webp" type="image/webp"><img src="../fotos/unama.png" alt="Logo Unama" width="97" height="97" loading="lazy"></picture>
                 </div>
                 <div class="app-links">
-                    <a href="#"><img src="../fotos/GooglePlay.png" alt="Disponível no Google Play" loading="lazy"></a>
-                    <a href="#"><img src="../fotos/AppStore.png" alt="Disponível na App Store" loading="lazy"></a>
-                    <a href="#"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery"
-                            loading="lazy"></a>
+                    <a href="#"><picture><source srcset="../fotos/GooglePlay.webp" type="image/webp"><img src="../fotos/GooglePlay.png" alt="Disponível no Google Play" width="135" height="40" loading="lazy"></picture></a>
+                    <a href="#"><picture><source srcset="../fotos/AppStore.webp" type="image/webp"><img src="../fotos/AppStore.png" alt="Disponível na App Store" width="135" height="40" loading="lazy"></picture></a>
+                    <a href="#"><picture><source srcset="../fotos/HuaweiAppGallery.webp" type="image/webp"><img src="../fotos/HuaweiAppGallery.png" alt="Disponível na App Gallery" width="134" height="40" loading="lazy"></picture></a>
                 </div>
             </div>
 

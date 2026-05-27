@@ -15,7 +15,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
     <!-- Ícones FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../CSS/tokens.css">
@@ -30,8 +31,7 @@
 
         <!-- Logo -->
         <div class="logo">
-            <img src="../fotos/logo.png" alt="CarShopping Logo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <picture><source srcset="../fotos/logo.webp" type="image/webp"><img src="../fotos/logo.png" alt="CarShopping Logo" width="452" height="116" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></picture>
             <span style="display: none;">Car<span>Shopping</span></span>
         </div>
 

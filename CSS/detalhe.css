@@ -377,8 +377,53 @@
     }
 }
 @media (max-width: 576px) {
-    .detalhe-section { padding: 100px 0 60px; }
-    .specs-grid { grid-template-columns: 1fr 1fr; }
-    .contact-form-card .form-row { grid-template-columns: 1fr; }
-    .price-destaque { font-size: 26px; }
+    .detalhe-section {
+        padding: 80px 0 50px;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form-card .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .price-destaque {
+        font-size: 26px;
+    }
+
+    .info-card {
+        padding: 20px 16px;
+    }
+
+    .info-card h1 {
+        font-size: 20px;
+    }
+
+    .contact-form-card input,
+    .contact-form-card textarea {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+
+    .galeria-thumb {
+        width: 64px;
+        height: 48px;
+    }
+
+    .btn-whatsapp,
+    .btn-contact-form {
+        padding: 14px 12px;
+        font-size: 14px;
+    }
+
+    .descricao-card,
+    .contact-form-card {
+        padding: 20px 16px;
+    }
 }

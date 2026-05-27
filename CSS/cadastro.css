@@ -111,4 +111,31 @@ h2 { color: var(--text-dark); font-size: 24px; margin-bottom: 5px; }
     text-align: left; border-left: 4px solid var(--color-error);
 }
 
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 480px) {
+    body {
+        padding: 16px 12px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .login-container {
+        padding: 32px 20px;
+        border-radius: var(--radius-md);
+    }
+
+    /* Evita zoom automático no iOS (font-size mínimo 16px) */
+    .input-group input {
+        font-size: 16px;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
 /* @keyframes shake, fadeIn e .shake/.fade-in definidos em tokens.css */

@@ -7,11 +7,16 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: var(--font-main);
     color: var(--text-dark);
     background-color: var(--text-light);
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 img {
@@ -553,17 +558,22 @@ img {
 }
 
 @media (max-width: 768px) {
+    .header {
+        padding: 12px 0;
+    }
+
     .nav-menu {
         display: none;
         position: absolute;
-        top: 70px;
+        top: 62px;
         left: 0;
         width: 100%;
         background: var(--text-light);
         flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: 16px 20px 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
         z-index: 100;
+        border-top: 1px solid var(--border-color);
     }
 
     .nav-menu.active {
@@ -573,14 +583,40 @@ img {
     .nav-menu ul {
         flex-direction: column;
         align-items: center;
+        gap: 4px;
     }
 
-    .header-actions {
+    .nav-menu ul li a {
+        display: block;
+        padding: 10px 16px;
+        font-size: 15px;
+        border-radius: var(--radius-sm);
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu ul li a:hover {
+        background: var(--light-bg);
+    }
+
+    /* Mostrar apenas o dark-mode-btn no mobile, ocultar os demais */
+    .header-actions .action-link,
+    .header-actions #header-auth {
         display: none;
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        transition: background 0.2s;
+    }
+
+    .mobile-menu-btn:hover {
+        background: var(--light-bg);
     }
 
     .hero h1 {
@@ -638,20 +674,17 @@ img {
 
 @media (max-width: 576px) {
     .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        padding: 0 10px;
+        padding: 0 12px;
     }
 
     .logo img {
-        width: 120px;
+        width: 110px;
         height: auto;
     }
 
     .hero {
-        min-height: 650px;
-        padding-top: 90px;
+        min-height: 480px;
+        padding-top: 72px;
     }
 
     .hero-content h1 {
@@ -720,6 +753,15 @@ img {
     .language-selector {
         justify-content: center;
     }
+}
+
+/* Dark mode — mobile nav */
+[data-theme="dark"] .nav-menu {
+    background: #0f172a;
+    border-top-color: var(--border-color);
+}
+[data-theme="dark"] .nav-menu ul li a:hover {
+    background: #1e293b;
 }
 
 /* @keyframes shake e .shake definidos em tokens.css */

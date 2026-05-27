@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /HTML/login.html
+Disallow: /HTML/cadastro.html
+Disallow: /HTML/recuperar-senha.html
+
+Sitemap: https://leafy-clafoutis-66fb87.netlify.app/sitemap.xml

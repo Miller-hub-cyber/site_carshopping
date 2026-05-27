@@ -35,7 +35,16 @@
       "Bash(npm audit *)",
       "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); try{ const j=JSON.parse\\(d\\); const vulns=j.vulnerabilities||{}; Object.entries\\(vulns\\).forEach\\(\\([k,v]\\)=>console.log\\(k,v.severity,v.via?.map?.\\(x=>typeof x==='string'?x:x.title\\).join\\(','\\)\\)\\); }catch\\(e\\){console.log\\(d.slice\\(0,500\\)\\);}\")",
       "Bash(node --input-type=module --eval ' *)",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(sort -k5 -n -r)",
+      "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp ok'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
+      "Bash(node -e ' *)",
+      "Bash(sed -n '177,181p' d:/site_carshopping/HTML/contato.html)",
+      "Bash(sed -n '223,227p' d:/site_carshopping/HTML/vender.html)",
+      "Bash(sed -n '272,276p' d:/site_carshopping/HTML/busca.html)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

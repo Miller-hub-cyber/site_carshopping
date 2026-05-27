@@ -7,6 +7,87 @@
   to   = "/HTML/index.html"
   status = 200
 
+# Atalhos de URL — permite acessar sem /HTML/ no caminho
+[[redirects]]
+  from = "/busca"
+  to   = "/HTML/busca.html"
+  status = 301
+
+[[redirects]]
+  from = "/busca.html"
+  to   = "/HTML/busca.html"
+  status = 301
+
+[[redirects]]
+  from = "/cadastro"
+  to   = "/HTML/cadastro.html"
+  status = 301
+
+[[redirects]]
+  from = "/cadastro.html"
+  to   = "/HTML/cadastro.html"
+  status = 301
+
+[[redirects]]
+  from = "/login"
+  to   = "/HTML/login.html"
+  status = 301
+
+[[redirects]]
+  from = "/login.html"
+  to   = "/HTML/login.html"
+  status = 301
+
+[[redirects]]
+  from = "/servicos"
+  to   = "/HTML/servicos.html"
+  status = 301
+
+[[redirects]]
+  from = "/servicos.html"
+  to   = "/HTML/servicos.html"
+  status = 301
+
+[[redirects]]
+  from = "/vender"
+  to   = "/HTML/vender.html"
+  status = 301
+
+[[redirects]]
+  from = "/vender.html"
+  to   = "/HTML/vender.html"
+  status = 301
+
+[[redirects]]
+  from = "/contato"
+  to   = "/HTML/contato.html"
+  status = 301
+
+[[redirects]]
+  from = "/contato.html"
+  to   = "/HTML/contato.html"
+  status = 301
+
+[[redirects]]
+  from = "/detalhe"
+  to   = "/HTML/detalhe.html"
+  status = 301
+
+[[redirects]]
+  from = "/detalhe.html"
+  to   = "/HTML/detalhe.html"
+  status = 301
+
+[[redirects]]
+  from = "/recuperar-senha"
+  to   = "/HTML/recuperar-senha.html"
+  status = 301
+
+[[redirects]]
+  from = "/recuperar-senha.html"
+  to   = "/HTML/recuperar-senha.html"
+  status = 301
+
 # Segurança — headers para todas as páginas
 [[headers]]
   for = "/*"

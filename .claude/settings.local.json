@@ -25,7 +25,13 @@
       "PowerShell(Stop-Process -Id \\(Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue\\).OwningProcess -Force -ErrorAction SilentlyContinue; Write-Host \"Processo na porta 3000 encerrado.\")",
       "Bash(find d:\\\\\\\\site_carshopping -type f)",
       "Bash(npm install *)",
-      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\site_carshopping\\\\backend\\\\src\\\\lib\")"
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\site_carshopping\\\\backend\\\\src\\\\lib\")",
+      "Bash(Get-ChildItem -Path \"d:\\\\site_carshopping\" -Recurse -File)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "PowerShell(tree \"d:\\\\site_carshopping\" -L 3 -Exclude node_modules 2>$null)",
+      "PowerShell(head -100)",
+      "Bash(grep -v \"^\\\\.\\\\.\\\\/$|^\\\\.\\\\/$\")"
     ]
   }
 }

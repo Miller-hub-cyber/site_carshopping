@@ -17,8 +17,8 @@
         window.location.hostname === "127.0.0.1" ||
         window.location.protocol === "file:";
 
-    const PROD_API_BASE   = "https://SEU-BACKEND.railway.app/api";
-    const PROD_MEDIA_BASE = "https://SEU-BACKEND.railway.app";
+    const PROD_API_BASE   = "https://sitecarshopping-production.up.railway.app/api";
+    const PROD_MEDIA_BASE = "https://sitecarshopping-production.up.railway.app";
 
     window.CS_API_BASE   = isLocal ? "http://localhost:3000/api" : PROD_API_BASE;
     window.CS_MEDIA_BASE = isLocal ? "http://localhost:3000"      : PROD_MEDIA_BASE;

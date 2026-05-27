@@ -45,7 +45,9 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(node gerar_doc.mjs)"
+      "Bash(node gerar_doc.mjs)",
+      "Bash(curl -s --max-time 10 \"https://sitecarshopping-production.up.railway.app/api/health\")",
+      "Bash(curl -s --max-time 10 -I -H \"Origin: https://carshopping-site.netlify.app\" \"https://sitecarshopping-production.up.railway.app/api/health\")"
     ]
   }
 }

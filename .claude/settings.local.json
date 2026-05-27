@@ -47,7 +47,9 @@
       "Bash(git push *)",
       "Bash(node gerar_doc.mjs)",
       "Bash(curl -s --max-time 10 \"https://sitecarshopping-production.up.railway.app/api/health\")",
-      "Bash(curl -s --max-time 10 -I -H \"Origin: https://carshopping-site.netlify.app\" \"https://sitecarshopping-production.up.railway.app/api/health\")"
+      "Bash(curl -s --max-time 10 -I -H \"Origin: https://carshopping-site.netlify.app\" \"https://sitecarshopping-production.up.railway.app/api/health\")",
+      "Bash(curl -sv --max-time 10 -X OPTIONS -H \"Origin: https://sitecarshopping.netlify.app\" -H \"Access-Control-Request-Method: POST\" -H \"Access-Control-Request-Headers: content-type\" \"https://sitecarshopping-production.up.railway.app/api/auth/login\")",
+      "Bash(curl -sv --max-time 10 -X OPTIONS -H \"Origin: https://carshopping-app.netlify.app\" -H \"Access-Control-Request-Method: POST\" -H \"Access-Control-Request-Headers: content-type\" \"https://sitecarshopping-production.up.railway.app/api/auth/login\")"
     ]
   }
 }

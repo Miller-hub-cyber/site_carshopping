@@ -324,6 +324,11 @@ main {
     color: var(--primary-red);
     background: rgba(204, 24, 24, 0.08);
 }
+.success-close-btn i {
+    font-size: 16px;
+    color: inherit;
+    margin-bottom: 0;
+}
 .btn-ver-anuncios {
     display: block;
     margin-top: 10px;

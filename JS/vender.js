@@ -3,6 +3,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     CSUtils.initMobileMenu();
     CSUtils.initFavoriteButtons();
+    CSUtils.initDarkMode();
+    CSUtils.initAuthHeader();
+    CSUtils.initScrollHeader();
     initVendaCarro();
 
     function initVendaCarro() {

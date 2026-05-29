@@ -117,6 +117,37 @@ export default async function carRoutes(app) {
         return { data: result, total, page, limit };
     });
 
+    /* GET /api/cars/my — anúncios do usuário autenticado */
+    app.get("/my", { onRequest: [app.authenticate] }, async (request) => {
+        const userId = request.user.sub;
+
+        const data = await db.select({
+            id:           cars.id,
+            brand:        cars.brand,
+            model:        cars.model,
+            year:         cars.year,
+            km:           cars.km,
+            fuel:         cars.fuel,
+            transmission: cars.transmission,
+            price:        cars.price,
+            status:       cars.status,
+            createdAt:    cars.createdAt,
+        })
+        .from(cars)
+        .where(eq(cars.userId, userId))
+        .orderBy(desc(cars.createdAt));
+
+        const ids = data.map(c => c.id);
+        let mainImages = [];
+        if (ids.length > 0) {
+            mainImages = await db.select({ carId: carImages.carId, url: carImages.url })
+                .from(carImages)
+                .where(and(eq(carImages.isMain, true), inArray(carImages.carId, ids)));
+        }
+        const imageMap = Object.fromEntries(mainImages.map(i => [i.carId, i.url]));
+        return data.map(c => ({ ...c, mainImage: imageMap[c.id] ?? null }));
+    });
+
     /* GET /api/cars/:id — detalhe do carro (inclui telefone do vendedor) */
     app.get("/:id", async (request, reply) => {
         const id = Number(request.params.id);
@@ -205,6 +236,57 @@ export default async function carRoutes(app) {
         }
 
         return reply.status(201).send(saved);
+    });
+
+    /* PUT /api/cars/:id — editar anúncio (requer autenticação) */
+    app.put("/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
+        const id = Number(request.params.id);
+        if (!id) return reply.status(400).send({ error: "ID inválido" });
+
+        const updateCarSchema = z.object({
+            brand:        z.string().min(1).optional(),
+            model:        z.string().min(1).optional(),
+            year:         z.number().int().min(1990).max(2099).optional(),
+            km:           z.number().int().min(0).optional(),
+            fuel:         z.string().min(1).optional(),
+            transmission: z.string().min(1).optional(),
+            price:        z.number().positive().optional(),
+            description:  z.string().optional(),
+            status:       z.enum(["active", "sold", "inactive"]).optional(),
+        });
+
+        const parsed = updateCarSchema.safeParse(request.body);
+        if (!parsed.success) {
+            return reply.status(400).send({ error: parsed.error.flatten().fieldErrors });
+        }
+
+        const [car] = await db.select({ id: cars.id, userId: cars.userId })
+            .from(cars).where(eq(cars.id, id)).limit(1);
+
+        if (!car) return reply.status(404).send({ error: "Veículo não encontrado" });
+        if (car.userId !== request.user.sub) {
+            return reply.status(403).send({ error: "Não autorizado" });
+        }
+
+        const [updated] = await db.update(cars).set(parsed.data).where(eq(cars.id, id)).returning();
+        return updated;
+    });
+
+    /* DELETE /api/cars/:id — excluir anúncio (requer autenticação) */
+    app.delete("/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
+        const id = Number(request.params.id);
+        if (!id) return reply.status(400).send({ error: "ID inválido" });
+
+        const [car] = await db.select({ id: cars.id, userId: cars.userId })
+            .from(cars).where(eq(cars.id, id)).limit(1);
+
+        if (!car) return reply.status(404).send({ error: "Veículo não encontrado" });
+        if (car.userId !== request.user.sub) {
+            return reply.status(403).send({ error: "Não autorizado" });
+        }
+
+        await db.delete(cars).where(eq(cars.id, id));
+        return { message: "Anúncio excluído com sucesso" };
     });
 
     /* PATCH /api/cars/:id/status — encerrar anúncio (requer autenticação) */

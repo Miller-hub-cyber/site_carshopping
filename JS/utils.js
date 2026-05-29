@@ -233,6 +233,9 @@ window.CSUtils = {
                         <i class="fa-solid fa-chevron-down user-chevron"></i>
                     </button>
                     <div class="user-dropdown" id="user-dropdown" role="menu">
+                        <a href="meus-anuncios.html" class="dropdown-item" role="menuitem">
+                            <i class="fa-solid fa-list"></i> Meus Anúncios
+                        </a>
                         <a href="vender.html" class="dropdown-item" role="menuitem">
                             <i class="fa-solid fa-plus"></i> Publicar anúncio
                         </a>

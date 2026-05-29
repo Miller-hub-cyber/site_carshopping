@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             cars.forEach(car => {
                 const price    = parseFloat(car.price).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
                 const km       = Number(car.km).toLocaleString("pt-BR");
-                const imgSrc   = car.mainImage ? `${API_BASE}${car.mainImage}` : FALLBACK_IMG;
+                const imgSrc   = car.mainImage
+                    ? (car.mainImage.startsWith("http") ? car.mainImage : `${API_BASE}${car.mainImage}`)
+                    : FALLBACK_IMG;
                 const detalhes = `detalhe.html?id=${encodeURIComponent(car.id)}`;
 
                 /* Sanitizar campos que vêm do banco */

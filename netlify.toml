@@ -88,6 +88,16 @@
   to   = "/HTML/recuperar-senha.html"
   status = 301
 
+[[redirects]]
+  from = "/meus-anuncios"
+  to   = "/HTML/meus-anuncios.html"
+  status = 301
+
+[[redirects]]
+  from = "/meus-anuncios.html"
+  to   = "/HTML/meus-anuncios.html"
+  status = 301
+
 # Segurança — headers para todas as páginas
 [[headers]]
   for = "/*"

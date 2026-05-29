@@ -156,8 +156,8 @@
                                 <label for="preco">Preço <span class="required">*</span></label>
                                 <div class="price-input">
                                     <span class="currency">R$</span>
-                                    <input type="number" id="preco" name="preco" placeholder="0,00" min="0" step="0.01"
-                                        required>
+                                    <input type="text" id="preco" name="preco" placeholder="0,00"
+                                        inputmode="numeric" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -197,11 +197,15 @@
                 <!-- Mensagem de Sucesso -->
                 <div id="success-message" class="success-message" style="display: none;">
                     <div class="success-content">
+                        <button type="button" class="success-close-btn" id="btn-fechar-sucesso" aria-label="Fechar">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
                         <i class="fa-solid fa-check-circle"></i>
                         <h3>Anúncio Enviado com Sucesso!</h3>
                         <p>Seu carro foi anunciado e está visível para todos os compradores.</p>
                         <p class="reference-id">ID do Anúncio: <strong>VD-<span id="reference-id"></span></strong></p>
                         <button type="button" class="btn-primary" id="btn-novo-anuncio">Anunciar Outro Carro</button>
+                        <a href="../HTML/meus-anuncios.html" class="btn-ver-anuncios">Ver meus anúncios</a>
                     </div>
                 </div>
             </div>

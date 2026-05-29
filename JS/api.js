@@ -97,6 +97,18 @@ window.CSApi = (() => {
             return request("POST", "/cars", carData, true);
         },
 
+        async getMyCars() {
+            return request("GET", "/cars/my", null, true);
+        },
+
+        async updateCar(id, data) {
+            return request("PUT", `/cars/${id}`, data, true);
+        },
+
+        async deleteCar(id) {
+            return request("DELETE", `/cars/${id}`, null, true);
+        },
+
         async uploadCarImages(carId, files) {
             const token = auth.getToken();
             if (!token) throw new Error("Usuário não autenticado");

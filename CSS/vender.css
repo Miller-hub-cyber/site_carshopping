@@ -306,6 +306,35 @@ main {
 }
 
 /* ================= MENSAGEM DE SUCESSO ================= */
+.success-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 20px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    line-height: 1;
+    transition: color 0.2s, background 0.2s;
+}
+.success-close-btn:hover {
+    color: var(--primary-red);
+    background: rgba(204, 24, 24, 0.08);
+}
+.btn-ver-anuncios {
+    display: block;
+    margin-top: 10px;
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.btn-ver-anuncios:hover { color: #1a3050; }
+
 .success-message {
     position: fixed;
     top: 0;
@@ -323,6 +352,7 @@ main {
 /* @keyframes fadeIn definido em tokens.css */
 
 .success-content {
+    position: relative;
     background: var(--text-light);
     border-radius: 15px;
     padding: 40px;

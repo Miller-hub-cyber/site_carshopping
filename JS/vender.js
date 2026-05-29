@@ -6,16 +6,28 @@ document.addEventListener("DOMContentLoaded", () => {
     initVendaCarro();
 
     function initVendaCarro() {
-        const form             = document.getElementById("form-venda-carro");
-        const uploadArea       = document.getElementById("upload-area");
-        const inputImagens     = document.getElementById("imagens");
-        const previewContainer = document.getElementById("preview-container");
-        const successMessage   = document.getElementById("success-message");
-        const btnNovoAnuncio   = document.getElementById("btn-novo-anuncio");
+        const form              = document.getElementById("form-venda-carro");
+        const uploadArea        = document.getElementById("upload-area");
+        const inputImagens      = document.getElementById("imagens");
+        const previewContainer  = document.getElementById("preview-container");
+        const successMessage    = document.getElementById("success-message");
+        const btnNovoAnuncio    = document.getElementById("btn-novo-anuncio");
+        const btnFecharSucesso  = document.getElementById("btn-fechar-sucesso");
 
         if (!form) return;
 
         let selectedFiles = [];
+
+        /* ===== MÁSCARA DE PREÇO (BRL) ===== */
+        const precoInput = document.getElementById("preco");
+        if (precoInput) {
+            precoInput.addEventListener("input", () => {
+                const digits = precoInput.value.replace(/\D/g, "");
+                if (!digits) { precoInput.value = ""; return; }
+                precoInput.value = (parseInt(digits, 10) / 100)
+                    .toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            });
+        }
 
         /* ===== UPLOAD — DRAG & DROP ===== */
         uploadArea.addEventListener("click", () => inputImagens.click());
@@ -119,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             CSUtils.setButtonLoading(submitBtn, "Publicando...");
 
             try {
+                const precoStr = document.getElementById("preco").value;
                 const carData = {
                     brand:        document.getElementById("marca").value,
                     model:        document.getElementById("modelo").value,
@@ -126,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     km:           Number(document.getElementById("quilometragem").value),
                     fuel:         document.getElementById("combustivel").value,
                     transmission: document.getElementById("cambio").value,
-                    price:        Number(document.getElementById("preco").value),
+                    price:        parseFloat(precoStr.replace(/\./g, "").replace(",", ".")) || 0,
                     description:  document.getElementById("descricao").value,
                 };
 
@@ -146,6 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 CSUtils.resetButton(submitBtn, originalText);
             }
         });
+
+        if (btnFecharSucesso) {
+            btnFecharSucesso.addEventListener("click", () => {
+                successMessage.style.display = "none";
+            });
+        }
 
         btnNovoAnuncio.addEventListener("click", () => {
             form.reset();
@@ -174,7 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 CSUtils.showToast("Quilometragem inválida.", "error");
                 return false;
             }
-            if (isNaN(values.preco) || values.preco <= 0) {
+            const precoNum = parseFloat((values.preco ?? "").replace(/\./g, "").replace(",", ".")) || 0;
+            if (!values.preco || precoNum <= 0) {
                 CSUtils.showToast("Preço inválido.", "error");
                 return false;
             }

@@ -46,6 +46,10 @@ function renderDetalhe(container, car) {
 
     const PLACEHOLDER_IMG = "../fotos/hb20.png";
 
+    function mediaUrl(url) {
+        return url.startsWith("http") ? url : `${MEDIA}${url}`;
+    }
+
     /* Número do vendedor (dígitos apenas, garante segurança no href) */
     const rawPhone = car.sellerPhone ? car.sellerPhone.replace(/\D/g, "") : "";
     const waPhone  = rawPhone ? (rawPhone.startsWith("55") ? rawPhone : `55${rawPhone}`) : "5511999999999";
@@ -53,7 +57,7 @@ function renderDetalhe(container, car) {
     /* HTML da galeria */
     const galeriaHTML = images.length > 0 ? `
         <div class="galeria-main">
-            <img id="galeria-img" src="${MEDIA}${escapeHtml(images[0].url)}" alt="${brand} ${model}">
+            <img id="galeria-img" src="${escapeHtml(mediaUrl(images[0].url))}" alt="${brand} ${model}">
             ${images.length > 1 ? `
             <button class="galeria-nav prev" id="gal-prev" aria-label="Imagem anterior">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -66,7 +70,7 @@ function renderDetalhe(container, car) {
         <div class="galeria-thumbs" id="galeria-thumbs">
             ${images.map((img, i) => `
                 <div class="galeria-thumb ${i === 0 ? "active" : ""}" data-index="${i}">
-                    <img src="${MEDIA}${escapeHtml(img.url)}" alt="Foto ${i + 1}" loading="lazy">
+                    <img src="${escapeHtml(mediaUrl(img.url))}" alt="Foto ${i + 1}" loading="lazy">
                 </div>
             `).join("")}
         </div>` : ""}
@@ -199,7 +203,9 @@ function initGaleria(images) {
 
     function goTo(index) {
         current = (index + images.length) % images.length;
-        img.src = `${MEDIA}${images[current].url}`;
+        img.src = images[current].url.startsWith("http")
+            ? images[current].url
+            : `${MEDIA}${images[current].url}`;
         thumbs.forEach((t, i) => t.classList.toggle("active", i === current));
     }
 

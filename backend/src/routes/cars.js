@@ -4,32 +4,54 @@ import { writeFile, unlink, mkdir } from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { randomBytes } from "crypto";
-import { v2 as cloudinary } from "cloudinary";
+import ImageKit from "imagekit";
 import { fileTypeFromBuffer } from "file-type";
 import { db } from "../db/index.js";
 import { cars, carImages, users } from "../db/schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const UPLOADS_DIR = join(__dirname, "../../uploads");
-const USE_CLOUDINARY = !!process.env.CLOUDINARY_URL;
+
+const USE_IMAGEKIT = !!(
+    process.env.IMAGEKIT_PUBLIC_KEY &&
+    process.env.IMAGEKIT_PRIVATE_KEY &&
+    process.env.IMAGEKIT_URL_ENDPOINT
+);
+
+const imagekit = USE_IMAGEKIT ? new ImageKit({
+    publicKey:   process.env.IMAGEKIT_PUBLIC_KEY,
+    privateKey:  process.env.IMAGEKIT_PRIVATE_KEY,
+    urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+}) : null;
 
 const ALLOWED_EXTS = new Set(["jpg", "jpeg", "png", "webp", "avif"]);
 
-/* Salva imagem localmente ou no Cloudinary */
 async function saveImage(buffer, ext) {
-    if (USE_CLOUDINARY) {
-        const result = await new Promise((resolve, reject) => {
-            cloudinary.uploader.upload_stream(
-                { folder: "carshopping", resource_type: "image" },
-                (err, res) => err ? reject(err) : resolve(res)
-            ).end(buffer);
+    if (USE_IMAGEKIT) {
+        const fileName = `${randomBytes(16).toString("hex")}.${ext}`;
+        const result = await imagekit.upload({
+            file:   buffer,
+            fileName,
+            folder: "/carshopping",
         });
-        return result.secure_url;
+        return result.url;
     }
 
     const filename = `${randomBytes(16).toString("hex")}.${ext}`;
     await writeFile(join(UPLOADS_DIR, filename), buffer);
     return `/uploads/${filename}`;
+}
+
+async function deleteImage(url) {
+    try {
+        if (USE_IMAGEKIT && url.includes("ik.imagekit.io")) {
+            const fileName = url.split("/").pop();
+            const files = await imagekit.listFiles({ searchQuery: `name = "${fileName}"` });
+            if (files?.length > 0) await imagekit.deleteFile(files[0].fileId);
+        } else if (url.startsWith("/uploads/")) {
+            await unlink(join(UPLOADS_DIR, url.replace("/uploads/", "")));
+        }
+    } catch { /* silencia erros de limpeza */ }
 }
 
 const createCarSchema = z.object({
@@ -296,15 +318,7 @@ export default async function carRoutes(app) {
         await db.delete(cars).where(eq(cars.id, id));
 
         for (const img of images) {
-            try {
-                if (USE_CLOUDINARY && img.url.includes("res.cloudinary.com")) {
-                    /* public_id = path depois de /upload/vXXX/, sem extensão */
-                    const match = img.url.match(/\/upload\/(?:v\d+\/)?(.+)\.[^.]+$/);
-                    if (match) await cloudinary.uploader.destroy(match[1]);
-                } else if (img.url.startsWith("/uploads/")) {
-                    await unlink(join(UPLOADS_DIR, img.url.replace("/uploads/", "")));
-                }
-            } catch { /* silencia erros de limpeza para não bloquear a resposta */ }
+            await deleteImage(img.url);
         }
 
         return { message: "Anúncio excluído com sucesso" };

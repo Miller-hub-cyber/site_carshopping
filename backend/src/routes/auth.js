@@ -17,10 +17,14 @@ const loginSchema = z.object({
     password: z.string().min(1),
 });
 
+const recoverSchema = z.object({ email: z.string().email("Email inválido") });
+
+const AUTH_RATE_LIMIT = { max: 10, timeWindow: "1 minute" };
+
 export default async function authRoutes(app) {
 
     /* POST /api/auth/register */
-    app.post("/register", async (request, reply) => {
+    app.post("/register", { config: { rateLimit: AUTH_RATE_LIMIT } }, async (request, reply) => {
         const parsed = registerSchema.safeParse(request.body);
         if (!parsed.success) {
             return reply.status(400).send({ error: parsed.error.flatten().fieldErrors });
@@ -46,7 +50,7 @@ export default async function authRoutes(app) {
     });
 
     /* POST /api/auth/login */
-    app.post("/login", async (request, reply) => {
+    app.post("/login", { config: { rateLimit: AUTH_RATE_LIMIT } }, async (request, reply) => {
         const parsed = loginSchema.safeParse(request.body);
         if (!parsed.success) {
             return reply.status(400).send({ error: "Dados inválidos" });
@@ -71,7 +75,6 @@ export default async function authRoutes(app) {
 
     /* POST /api/auth/recover */
     app.post("/recover", async (request, reply) => {
-        const recoverSchema = z.object({ email: z.string().email("Email inválido") });
         const parsed = recoverSchema.safeParse(request.body ?? {});
         if (!parsed.success) {
             return reply.status(400).send({ error: "Email inválido" });

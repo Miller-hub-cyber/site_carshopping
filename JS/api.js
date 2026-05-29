@@ -46,6 +46,11 @@ window.CSApi = (() => {
         const json = await res.json().catch(() => ({}));
 
         if (!res.ok) {
+            if (res.status === 401 && requiresAuth) {
+                auth.logout();
+                window.location.href = window.CS_LOGIN_URL ?? "/HTML/login.html";
+                return;
+            }
             const msg = typeof json.error === "string" ? json.error : "Erro na requisição";
             const err = new Error(msg);
             err.status = res.status;

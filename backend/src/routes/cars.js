@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { eq, and, gte, lte, ilike, desc, asc, sql, inArray } from "drizzle-orm";
-import { writeFile, mkdir } from "fs/promises";
+import { writeFile, unlink, mkdir } from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { randomBytes } from "crypto";
 import { v2 as cloudinary } from "cloudinary";
+import { fileTypeFromBuffer } from "file-type";
 import { db } from "../db/index.js";
 import { cars, carImages, users } from "../db/schema.js";
 
@@ -42,6 +43,18 @@ const createCarSchema = z.object({
     description:  z.string().optional(),
 });
 
+const updateCarSchema = z.object({
+    brand:        z.string().min(1).optional(),
+    model:        z.string().min(1).optional(),
+    year:         z.number().int().min(1990).max(2099).optional(),
+    km:           z.number().int().min(0).optional(),
+    fuel:         z.string().min(1).optional(),
+    transmission: z.string().min(1).optional(),
+    price:        z.number().positive().optional(),
+    description:  z.string().optional(),
+    status:       z.enum(["active", "sold", "inactive"]).optional(),
+});
+
 export default async function carRoutes(app) {
 
     /* Cria diretório de uploads dentro do plugin (falha visível no startup) */
@@ -59,17 +72,17 @@ export default async function carRoutes(app) {
             search, sort = "recentes",
         } = request.query;
 
-        /* Sanitiza paginação — sem teto, limite máximo de 50 */
-        const page  = Math.max(1, Number(request.query.page)  || 1);
-        const limit = Math.min(50, Math.max(1, Number(request.query.limit) || 12));
+        /* Sanitiza paginação */
+        const page  = Math.min(1000, Math.max(1, Number(request.query.page)  || 1));
+        const limit = Math.min(50,   Math.max(1, Number(request.query.limit) || 12));
 
         const filters = [eq(cars.status, "active")];
 
         if (brand && brand !== "todas") filters.push(eq(cars.brand, brand));
         if (year  && year  !== "todos")  filters.push(eq(cars.year, Number(year)));
         if (maxKm)    filters.push(lte(cars.km,    Number(maxKm)));
-        if (minPrice) filters.push(gte(cars.price, String(minPrice)));
-        if (maxPrice) filters.push(lte(cars.price, String(maxPrice)));
+        if (minPrice) filters.push(gte(cars.price, Number(minPrice)));
+        if (maxPrice) filters.push(lte(cars.price, Number(maxPrice)));
         if (search)   filters.push(ilike(cars.model, `%${search}%`));
         if (fuel && fuel !== "todos") filters.push(eq(cars.fuel, fuel));
 
@@ -224,8 +237,11 @@ export default async function carRoutes(app) {
             const ext = part.filename.split(".").pop().toLowerCase();
             if (!ALLOWED_EXTS.has(ext)) { await part.toBuffer(); continue; }
 
-            const buffer = await part.toBuffer();
-            const url    = await saveImage(buffer, ext);
+            const buffer   = await part.toBuffer();
+            const fileType = await fileTypeFromBuffer(buffer);
+            if (!fileType || !fileType.mime.startsWith("image/")) continue;
+
+            const url = await saveImage(buffer, fileType.ext);
 
             const isMain = saved.length === 0 && !existingMain;
             const [image] = await db.insert(carImages)
@@ -242,18 +258,6 @@ export default async function carRoutes(app) {
     app.put("/:id", { onRequest: [app.authenticate] }, async (request, reply) => {
         const id = Number(request.params.id);
         if (!id) return reply.status(400).send({ error: "ID inválido" });
-
-        const updateCarSchema = z.object({
-            brand:        z.string().min(1).optional(),
-            model:        z.string().min(1).optional(),
-            year:         z.number().int().min(1990).max(2099).optional(),
-            km:           z.number().int().min(0).optional(),
-            fuel:         z.string().min(1).optional(),
-            transmission: z.string().min(1).optional(),
-            price:        z.number().positive().optional(),
-            description:  z.string().optional(),
-            status:       z.enum(["active", "sold", "inactive"]).optional(),
-        });
 
         const parsed = updateCarSchema.safeParse(request.body);
         if (!parsed.success) {
@@ -285,7 +289,24 @@ export default async function carRoutes(app) {
             return reply.status(403).send({ error: "Não autorizado" });
         }
 
+        /* Remove imagens do storage antes de deletar o registro */
+        const images = await db.select({ url: carImages.url })
+            .from(carImages).where(eq(carImages.carId, id));
+
         await db.delete(cars).where(eq(cars.id, id));
+
+        for (const img of images) {
+            try {
+                if (USE_CLOUDINARY && img.url.includes("res.cloudinary.com")) {
+                    /* public_id = path depois de /upload/vXXX/, sem extensão */
+                    const match = img.url.match(/\/upload\/(?:v\d+\/)?(.+)\.[^.]+$/);
+                    if (match) await cloudinary.uploader.destroy(match[1]);
+                } else if (img.url.startsWith("/uploads/")) {
+                    await unlink(join(UPLOADS_DIR, img.url.replace("/uploads/", "")));
+                }
+            } catch { /* silencia erros de limpeza para não bloquear a resposta */ }
+        }
+
         return { message: "Anúncio excluído com sucesso" };
     });
 

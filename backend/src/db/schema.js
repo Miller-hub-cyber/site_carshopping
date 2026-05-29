@@ -19,7 +19,7 @@ export const users = pgTable("users", {
 /* ===== ANÚNCIOS DE CARROS ===== */
 export const cars = pgTable("cars", {
     id:           serial("id").primaryKey(),
-    userId:       integer("user_id").references(() => users.id, { onDelete: "set null" }),
+    userId:       integer("user_id").references(() => users.id, { onDelete: "cascade" }),
     brand:        varchar("brand",        { length: 100 }).notNull(),
     model:        varchar("model",        { length: 100 }).notNull(),
     year:         integer("year").notNull(),

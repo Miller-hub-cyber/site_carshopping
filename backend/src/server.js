@@ -105,6 +105,21 @@ app.setErrorHandler((error, request, reply) => {
     });
 });
 
+/* ===== GRACEFUL SHUTDOWN ===== */
+const shutdown = async (signal) => {
+    app.log.info(`[CarShopping] ${signal} recebido — encerrando servidor...`);
+    try {
+        await app.close();
+        process.exit(0);
+    } catch (err) {
+        app.log.error(err);
+        process.exit(1);
+    }
+};
+
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT",  () => shutdown("SIGINT"));
+
 /* ===== INICIALIZAÇÃO ===== */
 const PORT = Number(process.env.PORT) || 3000;
 

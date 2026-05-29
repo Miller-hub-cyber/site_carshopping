@@ -29,7 +29,7 @@ window.CSApi = (() => {
 
     /* ===== FETCH INTERNO (JSON) ===== */
     async function request(method, path, body, requiresAuth = false) {
-        const headers = { "Content-Type": "application/json" };
+        const headers = {};
 
         if (requiresAuth) {
             const token = auth.getToken();
@@ -37,11 +37,13 @@ window.CSApi = (() => {
             headers["Authorization"] = `Bearer ${token}`;
         }
 
-        const res = await fetch(`${BASE}${path}`, {
-            method,
-            headers,
-            body: body ? JSON.stringify(body) : undefined,
-        });
+        const opts = { method, headers };
+        if (body !== null && body !== undefined) {
+            headers["Content-Type"] = "application/json";
+            opts.body = JSON.stringify(body);
+        }
+
+        const res = await fetch(`${BASE}${path}`, opts);
 
         const json = await res.json().catch(() => ({}));
 
